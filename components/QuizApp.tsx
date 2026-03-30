@@ -9,7 +9,7 @@ import {
   UI,
 } from "@/lib/content";
 import { getResultLevel, getRoleResultLevel } from "@/lib/scoring";
-import { BEEHIIV_ENDPOINT, NEWSLETTER_URL } from "@/lib/config";
+import { BEEHIIV_ENDPOINT } from "@/lib/config";
 import { ROLE_ASSESSMENTS, ROLE_NAMES, type RoleId } from "@/lib/roles";
 import { ROLE_RESULT_COPY } from "@/lib/roleResults";
 import ToolsMarquee from "@/components/ToolsMarquee";
@@ -510,17 +510,11 @@ export default function QuizApp() {
 
               <div className="mt-10 rounded-[10px] border border-[#d8defa] px-5 py-[18px]">
                 <p className="font-sans text-[15px] font-semibold text-[#1f36a9]">
-                  {UI.results[language].newsletterTitle}
+                  {UI.results[language].benchmarkTitle}
                 </p>
                 <p className="mt-1 font-sans text-sm text-[#555]">
-                  {UI.results[language].newsletterSubtitle}
+                  {UI.results[language].benchmarkSubtitle}
                 </p>
-                <a
-                  href={NEWSLETTER_URL}
-                  className="mt-4 flex w-full items-center justify-center rounded-[10px] bg-[#365cff] py-3 text-center text-[15px] font-bold text-white transition-opacity hover:opacity-90"
-                >
-                  {UI.results[language].newsletterCta}
-                </a>
               </div>
 
               <button
