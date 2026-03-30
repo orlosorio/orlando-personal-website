@@ -177,11 +177,11 @@ export default function QuizApp() {
       <BackgroundScene />
 
       <div className="relative z-10 flex w-full items-center justify-center pt-2">
-        {screen !== "language" && (
+        {screen !== "type-selector" && screen !== "language" && (
           <button
             type="button"
             onClick={restartQuiz}
-            className="absolute left-0 flex items-center gap-1.5 rounded-lg border border-white/40 bg-white/25 px-3 py-1.5 text-[13px] font-medium text-[#1f36a9]/60 backdrop-blur-md transition-all hover:bg-white/40 hover:text-[#1f36a9]"
+            className="absolute left-0 flex cursor-pointer items-center gap-1.5 rounded-lg border border-white/40 bg-white/25 px-3 py-1.5 text-[13px] font-medium text-[#1f36a9]/60 backdrop-blur-md transition-all hover:bg-white/40 hover:text-[#1f36a9]"
             aria-label="Back to home"
           >
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0">
