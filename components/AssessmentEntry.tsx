@@ -20,23 +20,25 @@ export default function AssessmentEntry({
 }) {
   const router = useRouter();
   const [screen, setScreen] = useState<Screen>("language");
-  const [assessmentType, setAssessmentType] = useState<AssessmentType>("general");
+  const [language, setLanguage] = useState<Language | null>(null);
+
+  const pickLanguage = (lang: Language) => {
+    setLanguage(lang);
+    setScreen("type-selector");
+  };
 
   const selectAssessmentType = (type: AssessmentType) => {
-    setAssessmentType(type);
-    if (type === "role") {
-      setScreen("role-selector");
+    const lang = language ?? "es";
+    if (type === "general") {
+      router.push(`/assessment/general?lang=${lang}`);
     } else {
-      setScreen("language");
+      setScreen("role-selector");
     }
   };
 
-  const startGeneral = (lang: Language) => {
-    router.push(`/assessment/general?lang=${lang}`);
-  };
-
   const selectRole = (roleId: RoleId) => {
-    router.push(`/assessment/role/${roleId}`);
+    const lang = language ?? "es";
+    router.push(`/assessment/role/${roleId}?lang=${lang}`);
   };
 
   return (
@@ -69,14 +71,14 @@ export default function AssessmentEntry({
             <div className="flex flex-col gap-5 sm:flex-row sm:justify-center sm:gap-6">
               <button
                 type="button"
-                onClick={() => startGeneral("es")}
+                onClick={() => pickLanguage("es")}
                 className="glass-cta"
               >
                 <span className="glass-cta-label">{UI.language.es}</span>
               </button>
               <button
                 type="button"
-                onClick={() => startGeneral("en")}
+                onClick={() => pickLanguage("en")}
                 className="glass-cta"
               >
                 <span className="glass-cta-label">{UI.language.en}</span>
@@ -85,19 +87,12 @@ export default function AssessmentEntry({
             <div className="relative left-1/2 mt-12 -ml-[50vw] w-screen">
               <ToolsMarquee language="en" />
             </div>
-            <button
-              type="button"
-              onClick={() => setScreen("role-selector")}
-              className="mt-10 cursor-pointer font-sans text-[13px] text-[#365cff]/40 underline decoration-[#365cff]/15 transition-colors hover:text-[#365cff]/70"
-            >
-              Or take a role-specific assessment &rarr;
-            </button>
           </div>
         </div>
       )}
 
       {screen === "role-selector" && (
-        <RoleSelector language="es" onSelect={selectRole} />
+        <RoleSelector language={language ?? "es"} onSelect={selectRole} />
       )}
     </>
   );
