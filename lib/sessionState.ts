@@ -5,7 +5,7 @@ const STORAGE_KEY = "accionables_quiz_state";
 const TWO_HOURS = 2 * 60 * 60 * 1000;
 
 export interface PersistedQuizState {
-  assessmentType: "general" | "role";
+  assessmentType: "general" | "role" | "company";
   roleId: RoleId | null;
   language: Language;
   currentQuestion: number;

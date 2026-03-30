@@ -79,7 +79,7 @@ export default function TypeSelector({
         </h2>
 
         {onLanguageChange && (
-          <div className="mb-6 inline-flex items-center gap-1 rounded-full border border-[#1f36a9]/10 bg-white/40 p-1 text-[13px] font-medium backdrop-blur-md">
+          <div className="mb-10 inline-flex items-center gap-1 rounded-full border border-[#1f36a9]/10 bg-white/40 p-1 text-[13px] font-medium backdrop-blur-md">
             <button
               type="button"
               onClick={() => onLanguageChange("es")}

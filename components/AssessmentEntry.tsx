@@ -11,7 +11,6 @@ import ToolsMarquee from "@/components/ToolsMarquee";
 import HeroAI from "@/components/HeroAI";
 
 type Screen = "type-selector" | "language" | "role-selector";
-type AssessmentType = "general" | "role" | "company";
 
 export default function AssessmentEntry({
   errorParam,
@@ -31,6 +30,8 @@ export default function AssessmentEntry({
     const lang = language ?? "es";
     if (type === "general") {
       router.push(`/assessment/general?lang=${lang}`);
+    } else if (type === "company") {
+      router.push(`/assessment/company?lang=${lang}`);
     } else {
       setScreen("role-selector");
     }

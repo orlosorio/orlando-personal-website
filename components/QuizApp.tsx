@@ -18,7 +18,7 @@ import ToolsMarquee from "@/components/ToolsMarquee";
 import FomoCounter from "@/components/FomoCounter";
 import HeroAI from "@/components/HeroAI";
 import BackgroundScene from "@/components/BackgroundScene";
-import TypeSelector from "@/components/TypeSelector";
+import TypeSelector, { type AssessmentType } from "@/components/TypeSelector";
 import RoleSelector from "@/components/RoleSelector";
 import ScaleButtons from "@/components/ScaleButtons";
 
@@ -29,8 +29,6 @@ type Screen =
   | "quiz"
   | "email"
   | "results";
-
-type AssessmentType = "general" | "role" | "company";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
