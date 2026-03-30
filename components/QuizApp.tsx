@@ -176,7 +176,20 @@ export default function QuizApp() {
     <div className="quiz-grid-bg flex min-h-screen flex-col px-4 py-10 sm:px-6 sm:py-12">
       <BackgroundScene />
 
-      <div className="relative z-10 flex w-full justify-center pt-2">
+      <div className="relative z-10 flex w-full items-center justify-center pt-2">
+        {screen !== "language" && (
+          <button
+            type="button"
+            onClick={restartQuiz}
+            className="absolute left-0 flex items-center gap-1.5 rounded-lg border border-white/40 bg-white/25 px-3 py-1.5 text-[13px] font-medium text-[#1f36a9]/60 backdrop-blur-md transition-all hover:bg-white/40 hover:text-[#1f36a9]"
+            aria-label="Back to home"
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0">
+              <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="hidden sm:inline">Home</span>
+          </button>
+        )}
         <p className="tech-brand" data-text={UI.brand}>
           <span className="tech-brand-inner">{UI.brand}</span>
         </p>
