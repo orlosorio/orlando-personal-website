@@ -175,7 +175,7 @@ export default function RoleQuiz({
   if (!hydrated) return null;
 
   return (
-    <>
+    <div className="quiz-in-progress contents">
       {screen === "language" && (
         <div className="flex flex-1 flex-col items-center justify-center">
           <div className="w-full max-w-[600px] text-center">
@@ -424,6 +424,6 @@ export default function RoleQuiz({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

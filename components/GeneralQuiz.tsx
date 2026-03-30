@@ -152,7 +152,7 @@ export default function GeneralQuiz({
   if (!hydrated) return null;
 
   return (
-    <>
+    <div className="quiz-in-progress contents">
       {screen === "quiz" && currentQ && (
         <div className="flex flex-1 flex-col items-center justify-center">
           <div className="w-full max-w-[600px]">
@@ -345,6 +345,6 @@ export default function GeneralQuiz({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

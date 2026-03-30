@@ -1172,3 +1172,50 @@ body {
   margin: 0;
   min-height: 100%;
 }
+
+/* ── Quiz-active fade: dim everything except the quiz card ── */
+
+.assessment-shell.quiz-grid-bg:has(.quiz-in-progress) {
+  background-image:
+    linear-gradient(rgba(54, 92, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(54, 92, 255, 0.02) 1px, transparent 1px);
+  transition: background-image 0.8s ease;
+}
+
+.assessment-shell:has(.quiz-in-progress) .quiz-aurora-blob {
+  opacity: 0.18;
+  transition: opacity 0.8s ease;
+}
+
+.assessment-shell:has(.quiz-in-progress) .quiz-grain-layer {
+  opacity: 0.15;
+  transition: opacity 0.8s ease;
+}
+
+.assessment-shell:has(.quiz-in-progress) .quiz-cube {
+  opacity: 0.12;
+  transition: opacity 0.8s ease;
+}
+
+.assessment-shell:has(.quiz-in-progress) .tech-brand {
+  opacity: 0.18;
+  transition: opacity 0.8s ease;
+}
+
+.assessment-shell:has(.quiz-in-progress) .fomo-counter {
+  opacity: 0.12;
+  transition: opacity 0.8s ease;
+}
+
+.assessment-shell:has(.quiz-in-progress)::before {
+  opacity: 0.3;
+}
+
+.assessment-shell:has(.quiz-in-progress) [aria-label="Back to home"] {
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+
+.assessment-shell:has(.quiz-in-progress) [aria-label="Back to home"]:hover {
+  opacity: 0.8;
+}
