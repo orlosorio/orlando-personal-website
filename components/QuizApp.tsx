@@ -8,14 +8,27 @@ import {
   RESULT_COPY,
   UI,
 } from "@/lib/content";
-import { getResultLevel } from "@/lib/scoring";
+import { getResultLevel, getRoleResultLevel } from "@/lib/scoring";
 import { BEEHIIV_ENDPOINT, NEWSLETTER_URL } from "@/lib/config";
+import { ROLE_ASSESSMENTS, ROLE_NAMES, type RoleId } from "@/lib/roles";
+import { ROLE_RESULT_COPY } from "@/lib/roleResults";
 import ToolsMarquee from "@/components/ToolsMarquee";
 import FomoCounter from "@/components/FomoCounter";
 import HeroAI from "@/components/HeroAI";
 import BackgroundScene from "@/components/BackgroundScene";
+import TypeSelector from "@/components/TypeSelector";
+import RoleSelector from "@/components/RoleSelector";
+import ScaleButtons from "@/components/ScaleButtons";
 
-type Screen = "language" | "quiz" | "email" | "results";
+type Screen =
+  | "type-selector"
+  | "language"
+  | "role-selector"
+  | "quiz"
+  | "email"
+  | "results";
+
+type AssessmentType = "general" | "role";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -30,15 +43,39 @@ function splitLevelLabel(label: string): { number: string; name: string } {
 export default function QuizApp() {
   const [language, setLanguage] = useState<Language | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<boolean[]>([]);
+  const [answers, setAnswers] = useState<number[]>([]);
   const [emailInput, setEmailInput] = useState("");
   const [emailError, setEmailError] = useState(false);
-  const [screen, setScreen] = useState<Screen>("language");
+  const [screen, setScreen] = useState<Screen>("type-selector");
+  const [assessmentType, setAssessmentType] = useState<AssessmentType>("general");
+  const [selectedRole, setSelectedRole] = useState<RoleId | null>(null);
 
-  const totalQuestions = QUESTIONS.length;
+  const isRoleQuiz = assessmentType === "role";
+  const roleQuestions =
+    isRoleQuiz && selectedRole
+      ? ROLE_ASSESSMENTS[selectedRole].questions
+      : null;
+  const activeQuestions = isRoleQuiz && roleQuestions ? roleQuestions : QUESTIONS;
+  const totalQuestions = activeQuestions.length;
+
+  const selectAssessmentType = (type: AssessmentType) => {
+    setAssessmentType(type);
+    setScreen("language");
+  };
 
   const startQuiz = (lang: Language) => {
     setLanguage(lang);
+    setCurrentQuestion(0);
+    setAnswers([]);
+    if (assessmentType === "role") {
+      setScreen("role-selector");
+    } else {
+      setScreen("quiz");
+    }
+  };
+
+  const selectRole = (roleId: RoleId) => {
+    setSelectedRole(roleId);
     setCurrentQuestion(0);
     setAnswers([]);
     setScreen("quiz");
@@ -49,11 +86,14 @@ export default function QuizApp() {
     setAnswers([]);
     setEmailInput("");
     setEmailError(false);
-    setScreen("language");
+    setAssessmentType("general");
+    setSelectedRole(null);
+    setLanguage(null);
+    setScreen("type-selector");
   };
 
-  const answerQuestion = (yes: boolean) => {
-    const nextAnswers = [...answers, yes];
+  const answerQuestion = (value: number) => {
+    const nextAnswers = [...answers, value];
     setAnswers(nextAnswers);
     if (currentQuestion + 1 >= totalQuestions) {
       setScreen("email");
@@ -73,11 +113,30 @@ export default function QuizApp() {
       BEEHIIV_ENDPOINT &&
       BEEHIIV_ENDPOINT !== "YOUR_BEEHIIV_ENDPOINT"
     ) {
+      const payload = isRoleQuiz
+        ? {
+            email: trimmed,
+            language,
+            assessmentType: "role" as const,
+            roleId: selectedRole,
+            roleName: selectedRole && language ? ROLE_NAMES[selectedRole][language] : "",
+            totalScore: score,
+            maxScore: totalQuestions * 4,
+            averageScore: (score / totalQuestions).toFixed(1),
+            resultLevel,
+          }
+        : {
+            email: trimmed,
+            language,
+            assessmentType: "general" as const,
+            score,
+            resultLevel,
+          };
       try {
         await fetch(BEEHIIV_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: trimmed }),
+          body: JSON.stringify(payload),
         });
       } catch {
         /* advance regardless */
@@ -91,18 +150,27 @@ export default function QuizApp() {
     setScreen("results");
   };
 
-  const score = answers.filter(Boolean).length;
+  const score = answers.reduce((sum, v) => sum + v, 0);
+  const maxScore = isRoleQuiz ? totalQuestions * 4 : totalQuestions;
   const resultLevel =
-    answers.length > 0 ? getResultLevel(score, answers.length) : 0;
+    answers.length > 0
+      ? isRoleQuiz
+        ? getRoleResultLevel(score, maxScore)
+        : getResultLevel(score, answers.length)
+      : 0;
   const resultLabel =
     language != null ? LEVEL_LABELS[resultLevel]![language] : "";
   const { number: resultLevelNumber, name: resultLevelName } =
     splitLevelLabel(resultLabel);
 
+  const resultCopy = isRoleQuiz ? ROLE_RESULT_COPY : RESULT_COPY;
+
   const quizProgressPct =
     totalQuestions > 0
       ? ((currentQuestion + 1) / totalQuestions) * 100
       : 0;
+
+  const currentQ = activeQuestions[currentQuestion];
 
   return (
     <div className="quiz-grid-bg flex min-h-screen flex-col px-4 py-10 sm:px-6 sm:py-12">
@@ -115,6 +183,10 @@ export default function QuizApp() {
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[860px] flex-1 flex-col">
+        {screen === "type-selector" && (
+          <TypeSelector onSelect={selectAssessmentType} />
+        )}
+
         {screen === "language" && (
           <div className="flex flex-1 flex-col items-center justify-center">
             <div className="w-full max-w-[600px] text-center">
@@ -153,15 +225,21 @@ export default function QuizApp() {
           </div>
         )}
 
-        {screen === "quiz" && language && QUESTIONS[currentQuestion] && (
+        {screen === "role-selector" && language && (
+          <RoleSelector language={language} onSelect={selectRole} />
+        )}
+
+        {screen === "quiz" && language && currentQ && (
           <div className="flex flex-1 flex-col items-center justify-center">
             <div className="w-full max-w-[600px]">
             <header className="mb-5 w-full shrink-0">
               <div className="mb-2 flex flex-wrap items-center justify-between gap-2 text-[14px] text-[#365cff]">
                 <span>
-                  {UI.quiz[language].levelOf(
-                    QUESTIONS[currentQuestion]!.level + 1,
-                  )}
+                  {isRoleQuiz && roleQuestions
+                    ? UI.quiz[language].levelOf(roleQuestions[currentQuestion]!.level + 1)
+                    : UI.quiz[language].levelOf(
+                        (QUESTIONS[currentQuestion] as { level: number }).level + 1,
+                      )}
                 </span>
                 <span>
                   {UI.quiz[language].questionOf(
@@ -187,6 +265,29 @@ export default function QuizApp() {
             <div className="mx-auto w-full max-w-[600px]">
               <div className="glass-quiz-card px-6 py-8 sm:px-10 sm:py-11">
                 {(() => {
+                  if (isRoleQuiz && roleQuestions) {
+                    const q = roleQuestions[currentQuestion]!;
+                    const { number, name } = splitLevelLabel(q.levelLabel[language]);
+                    const text = q.statement[language];
+                    return (
+                      <>
+                        <p className="font-serif text-[28px] font-bold leading-tight text-[#1f36a9]">
+                          {number}
+                        </p>
+                        <p className="mt-1 font-sans text-[15px] font-semibold italic text-[#4e6bff]">
+                          {name}
+                        </p>
+                        <p className="mt-6 min-h-14 font-sans text-[15px] font-normal leading-[1.6] text-[#2a2a2a]/80 sm:min-h-14 sm:text-[17px]">
+                          {text}
+                        </p>
+                        <ScaleButtons
+                          onChange={answerQuestion}
+                          language={language}
+                        />
+                      </>
+                    );
+                  }
+
                   const q = QUESTIONS[currentQuestion]!;
                   const full = LEVEL_LABELS[q.level]![language];
                   const { number, name } = splitLevelLabel(full);
@@ -205,14 +306,14 @@ export default function QuizApp() {
                       <div className="mt-10 flex flex-wrap justify-center gap-[14px]">
                         <button
                           type="button"
-                          onClick={() => answerQuestion(true)}
+                          onClick={() => answerQuestion(1)}
                           className="glass-answer-btn glass-answer-yes"
                         >
                           {UI.quiz[language].yes}
                         </button>
                         <button
                           type="button"
-                          onClick={() => answerQuestion(false)}
+                          onClick={() => answerQuestion(0)}
                           className="glass-answer-btn glass-answer-no"
                         >
                           {UI.quiz[language].no}
@@ -283,15 +384,28 @@ export default function QuizApp() {
                 <p className="mt-2 font-sans text-[15px] font-semibold italic text-[#4e6bff]">
                   {resultLevelName}
                 </p>
+                {isRoleQuiz && selectedRole && (
+                  <p className="mt-2 font-sans text-xs tracking-[0.08em] text-[#8a9ff0]">
+                    {ROLE_NAMES[selectedRole][language]}
+                    {" · "}
+                    {language === "es" ? "Escala de confianza" : "Confidence Scale"}
+                  </p>
+                )}
               </div>
 
               <div className="mt-8 rounded-[10px] bg-[#eef1ff] px-5 py-4">
                 <div className="mb-3 flex items-center justify-between text-[15px]">
                   <span className="text-[#333]">
-                    {UI.results[language].affirmativeLabel}
+                    {isRoleQuiz
+                      ? language === "es"
+                        ? "Puntuación total"
+                        : "Total score"
+                      : UI.results[language].affirmativeLabel}
                   </span>
                   <span className="font-bold text-[#111]">
-                    {UI.results[language].scoreOf(score, answers.length)}
+                    {isRoleQuiz
+                      ? `${score} / ${maxScore}`
+                      : UI.results[language].scoreOf(score, answers.length)}
                   </span>
                 </div>
                 <div className="h-[5px] w-full rounded-full bg-[#d7ddfb]">
@@ -299,16 +413,42 @@ export default function QuizApp() {
                     className="h-[5px] rounded-full bg-[#365cff] transition-[width] duration-[350ms] ease-out"
                     style={{
                       width:
-                        answers.length > 0
-                          ? `${(score / answers.length) * 100}%`
+                        maxScore > 0
+                          ? `${(score / maxScore) * 100}%`
                           : "0%",
                     }}
                   />
                 </div>
               </div>
 
+              {isRoleQuiz && (
+                <div className="avg-score-card">
+                  <div className="mb-2 flex items-center justify-between text-[14px]">
+                    <span className="text-[#555]">
+                      {language === "es"
+                        ? "Promedio por pregunta"
+                        : "Average score per question"}
+                    </span>
+                    <span className="font-bold text-[#111]">
+                      {(score / totalQuestions).toFixed(1)} / 4.0
+                    </span>
+                  </div>
+                  <div className="h-[4px] w-full rounded-full bg-[#d7ddfb]">
+                    <div
+                      className="h-[4px] rounded-full bg-[#365cff] transition-[width] duration-[350ms] ease-out"
+                      style={{
+                        width: `${(score / (totalQuestions * 4)) * 100}%`,
+                      }}
+                    />
+                  </div>
+                  <p className="mt-1 text-right text-xs text-[#999]">
+                    {Math.round((score / (totalQuestions * 4)) * 100)}%
+                  </p>
+                </div>
+              )}
+
               <p className="mt-8 font-sans text-[15px] leading-relaxed text-[#333]">
-                {RESULT_COPY[resultLevel]!.description[language]}
+                {resultCopy[resultLevel]!.description[language]}
               </p>
 
               <div className="mt-8">
@@ -316,7 +456,7 @@ export default function QuizApp() {
                   {UI.results[language].nextStepHeading}
                 </p>
                 <p className="mt-2 font-sans text-[15px] leading-relaxed text-[#333]">
-                  {RESULT_COPY[resultLevel]!.nextStep[language]}
+                  {resultCopy[resultLevel]!.nextStep[language]}
                 </p>
               </div>
 
