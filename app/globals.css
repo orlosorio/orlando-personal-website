@@ -1074,15 +1074,13 @@
 
 .type-selector-card:hover {
   background: rgba(255, 255, 255, 0.48);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow:
-    0 12px 40px rgba(31, 54, 169, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   transform: translateY(-2px);
+  animation: glitch-border 3s steps(1) infinite;
 }
 
 .type-selector-card:active {
   transform: translateY(0);
+  animation: none;
 }
 
 .type-selector-card-recommended {
@@ -1090,6 +1088,85 @@
   box-shadow:
     0 8px 32px rgba(31, 54, 169, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+@keyframes glitch-border {
+  0%, 18%, 26%, 56%, 68%, 76%, 86%, 100% {
+    border-color: rgba(54, 92, 255, 0.5);
+    box-shadow:
+      0 12px 40px rgba(31, 54, 169, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 0 0 1px rgba(54, 92, 255, 0.08),
+      0 0 15px rgba(54, 92, 255, 0.06);
+  }
+  20% {
+    border-color: rgba(6, 182, 212, 0.8);
+    box-shadow:
+      3px 0 0 0 rgba(168, 85, 247, 0.3),
+      -3px 0 0 0 rgba(6, 182, 212, 0.3),
+      0 12px 40px rgba(31, 54, 169, 0.14),
+      0 0 18px rgba(6, 182, 212, 0.12);
+  }
+  22% {
+    border-color: rgba(232, 121, 249, 0.7);
+    box-shadow:
+      -2px 1px 0 0 rgba(54, 92, 255, 0.25),
+      2px -1px 0 0 rgba(232, 121, 249, 0.25),
+      0 12px 40px rgba(31, 54, 169, 0.14),
+      0 0 22px rgba(232, 121, 249, 0.12);
+  }
+  24% {
+    border-color: transparent;
+    box-shadow: 0 8px 32px rgba(31, 54, 169, 0.06);
+  }
+  58% {
+    border-color: transparent;
+    box-shadow: 0 8px 32px rgba(31, 54, 169, 0.06);
+  }
+  60% {
+    border-color: rgba(54, 92, 255, 0.9);
+    box-shadow:
+      0 0 0 2px rgba(54, 92, 255, 0.2),
+      0 0 30px rgba(54, 92, 255, 0.15),
+      0 12px 40px rgba(31, 54, 169, 0.14);
+  }
+  62% {
+    border-color: transparent;
+    box-shadow: 0 8px 32px rgba(31, 54, 169, 0.06);
+  }
+  64% {
+    border-color: rgba(6, 182, 212, 0.6);
+    box-shadow:
+      0 12px 40px rgba(31, 54, 169, 0.14),
+      0 0 12px rgba(6, 182, 212, 0.08);
+  }
+  78% {
+    border-color: rgba(168, 85, 247, 0.7);
+    box-shadow:
+      0 2px 0 0 rgba(6, 182, 212, 0.25),
+      0 -2px 0 0 rgba(168, 85, 247, 0.25),
+      0 12px 40px rgba(31, 54, 169, 0.14),
+      0 0 18px rgba(168, 85, 247, 0.1);
+  }
+  80% {
+    border-color: rgba(6, 182, 212, 0.7);
+    box-shadow:
+      2px 0 0 0 rgba(232, 121, 249, 0.2),
+      -2px 0 0 0 rgba(6, 182, 212, 0.2),
+      0 12px 40px rgba(31, 54, 169, 0.14),
+      0 0 15px rgba(6, 182, 212, 0.08);
+  }
+  82% {
+    border-color: transparent;
+    box-shadow: 0 8px 32px rgba(31, 54, 169, 0.06);
+  }
+  84% {
+    border-color: rgba(54, 92, 255, 0.7);
+    box-shadow:
+      0 0 0 1.5px rgba(54, 92, 255, 0.12),
+      0 0 20px rgba(54, 92, 255, 0.1),
+      0 12px 40px rgba(31, 54, 169, 0.14);
+  }
 }
 
 /* ── Role selector grid ── */

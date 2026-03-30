@@ -60,7 +60,7 @@ export default function AssessmentEntry({
 
       {screen === "language" && (
         <div className="flex flex-1 flex-col items-center justify-center">
-          <div className="w-full max-w-[700px] text-center">
+          <div className="w-full max-w-[500px] text-center">
             <h1 className="hero-title mb-[clamp(8px,1.5vh,20px)]">
               <HeroAI />
               <span className="hero-title-adoption">Adoption</span>
