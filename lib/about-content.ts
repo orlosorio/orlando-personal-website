@@ -35,7 +35,7 @@ export const ABOUT_CONTENT: Record<'en' | 'es', AboutContent> = {
     meta: {
       title: 'Something Big Is Happening. Most People Don\u2019t Know Yet.',
       subtitle: 'Why we built this global AI adoption survey \u2014 and why it matters right now.',
-      author: 'Orlando Osorio & Alberto Sade',
+      author: 'Orlando Osorio & Alberto Sadde',
       authorHandle: '@orlandosorio_ · @aesadde',
       publishedDate: '2026',
       readTime: '8 min read',
@@ -98,7 +98,7 @@ export const ABOUT_CONTENT: Record<'en' | 'es', AboutContent> = {
     meta: {
       title: 'Algo grande est\u00e1 pasando. La mayor\u00eda todav\u00eda no lo sabe.',
       subtitle: 'Por qu\u00e9 construimos esta encuesta global de adopci\u00f3n de IA \u2014 y por qu\u00e9 importa ahora mismo.',
-      author: 'Orlando Osorio & Alberto Sade',
+      author: 'Orlando Osorio & Alberto Sadde',
       authorHandle: '@orlandosorio_ · @aesadde',
       publishedDate: '2026',
       readTime: '8 min de lectura',

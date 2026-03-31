@@ -12,7 +12,7 @@ export default function AssessmentNav() {
       {isEntry ? (
         <a
           href="/"
-          className="absolute left-0 flex cursor-pointer items-center gap-1.5 rounded-lg border border-white/40 bg-white/25 px-3 py-1.5 text-[13px] font-medium text-[#1f36a9]/60 backdrop-blur-md transition-all hover:bg-white/40 hover:text-[#1f36a9]"
+          className="absolute left-0 top-[20px] flex cursor-pointer items-center gap-1.5 rounded-lg border border-white/40 bg-white/25 px-3 py-1.5 text-[13px] font-medium text-[#1f36a9]/60 backdrop-blur-md transition-all hover:bg-white/40 hover:text-[#1f36a9]"
           aria-label="Back to home"
         >
           <svg
@@ -36,7 +36,7 @@ export default function AssessmentNav() {
         <button
           type="button"
           onClick={() => router.push("/assessment")}
-          className="absolute left-0 flex cursor-pointer items-center gap-1.5 rounded-lg border border-white/40 bg-white/25 px-3 py-1.5 text-[13px] font-medium text-[#1f36a9]/60 backdrop-blur-md transition-all hover:bg-white/40 hover:text-[#1f36a9]"
+          className="absolute left-0 top-[20px] flex cursor-pointer items-center gap-1.5 rounded-lg border border-white/40 bg-white/25 px-3 py-1.5 text-[13px] font-medium text-[#1f36a9]/60 backdrop-blur-md transition-all hover:bg-white/40 hover:text-[#1f36a9]"
           aria-label="Back to home"
         >
           <svg

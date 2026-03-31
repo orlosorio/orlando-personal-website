@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ABOUT_CONTENT } from "@/lib/about-content";
 import ArticleHeader from "@/components/About/ArticleHeader";
 import ArticleSection from "@/components/About/ArticleSection";
@@ -9,6 +10,19 @@ import AuthorSignoff from "@/components/About/AuthorSignoff";
 import StickyAssessmentBar from "@/components/About/StickyAssessmentBar";
 
 type Lang = "en" | "es";
+
+const SIDEBAR_COPY = {
+  en: {
+    heading: "AI Adoption Assessment",
+    text: "Discover your real AI adoption level in just 2 minutes.",
+    button: "Take the free assessment \u2192",
+  },
+  es: {
+    heading: "Assessment de Adopci\u00f3n de IA",
+    text: "Descubre tu nivel real de adopci\u00f3n de IA en solo 2 minutos.",
+    button: "Tomar el assessment gratuito \u2192",
+  },
+} as const;
 
 function getInitialLang(): Lang {
   if (typeof window !== "undefined") {
@@ -22,6 +36,7 @@ function getInitialLang(): Lang {
 export default function AboutPage() {
   const [lang, setLang] = useState<Lang>("en");
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setLang(getInitialLang());
@@ -36,29 +51,46 @@ export default function AboutPage() {
   }, [lang, mounted]);
 
   const content = ABOUT_CONTENT[lang];
+  const sidebar = SIDEBAR_COPY[lang];
   const citationAfterIndex = 1;
 
   return (
     <>
       <ReadingProgress />
-      <div className="about-container">
-        <ArticleHeader
-          meta={content.meta}
-          lang={lang}
-          onLangChange={setLang}
-        />
+      <div className="about-page-layout">
+        <div className="about-container">
+          <ArticleHeader
+            meta={content.meta}
+            lang={lang}
+            onLangChange={setLang}
+          />
 
-        {content.sections.map((section, i) => (
-          <div key={section.id}>
-            <ArticleSection heading={section.heading} body={section.body} />
-            {i === citationAfterIndex && (
-              <CitationCard citation={content.citation} />
-            )}
-            {i < content.sections.length - 1 && <hr className="about-divider" />}
+          {content.sections.map((section, i) => (
+            <div key={section.id}>
+              <ArticleSection heading={section.heading} body={section.body} />
+              {i === citationAfterIndex && (
+                <CitationCard citation={content.citation} />
+              )}
+              {i < content.sections.length - 1 && <hr className="about-divider" />}
+            </div>
+          ))}
+
+          <AuthorSignoff lang={lang} />
+        </div>
+
+        <aside className="about-sidebar-col">
+          <div className="about-sidebar-card">
+            <p className="about-sidebar-heading">{sidebar.heading}</p>
+            <p className="about-sidebar-text">{sidebar.text}</p>
+            <button
+              type="button"
+              onClick={() => router.push("/assessment")}
+              className="about-sidebar-btn"
+            >
+              {sidebar.button}
+            </button>
           </div>
-        ))}
-
-        <AuthorSignoff lang={lang} />
+        </aside>
       </div>
       <StickyAssessmentBar lang={lang} />
     </>

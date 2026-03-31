@@ -270,17 +270,17 @@ export default function QuizApp() {
               <div className="flex flex-col gap-5 sm:flex-row sm:justify-center sm:gap-6">
                 <button
                   type="button"
-                  onClick={() => startQuiz("es")}
-                  className="glass-cta"
-                >
-                  <span className="glass-cta-label">{UI.language.es}</span>
-                </button>
-                <button
-                  type="button"
                   onClick={() => startQuiz("en")}
                   className="glass-cta"
                 >
                   <span className="glass-cta-label">{UI.language.en}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => startQuiz("es")}
+                  className="glass-cta"
+                >
+                  <span className="glass-cta-label">{UI.language.es}</span>
                 </button>
               </div>
               <div className="mt-12 w-screen -ml-[50vw] left-1/2 relative">

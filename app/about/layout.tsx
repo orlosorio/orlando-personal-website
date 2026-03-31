@@ -20,7 +20,7 @@ export default function AboutLayout({
   return (
     <div className="assessment-shell quiz-grid-bg flex min-h-dvh flex-col px-4 py-[clamp(0.5rem,1.5vh,2rem)] sm:px-6">
       <BackgroundScene />
-      <div className="relative z-10 mx-auto flex w-full max-w-[700px] flex-1 flex-col">
+      <div className="relative z-10 mx-auto flex w-full max-w-[700px] flex-1 flex-col lg:max-w-[1020px]">
         {children}
       </div>
     </div>

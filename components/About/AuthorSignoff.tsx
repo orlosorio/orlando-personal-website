@@ -6,7 +6,7 @@ export default function AuthorSignoff({ lang }: AuthorSignoffProps) {
   return (
     <div className="about-signoff">
       <p className="about-signoff-name">
-        &mdash; Orlando Osorio &amp; Alberto Sade
+        &mdash; Orlando Osorio &amp; Alberto Sadde
       </p>
       <div className="about-signoff-links">
         <a
