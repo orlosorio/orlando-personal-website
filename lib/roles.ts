@@ -8,7 +8,13 @@ export type RoleId =
   | 'social-media'
   | 'writers-editors'
   | 'paid-marketing'
-  | 'data-analytics';
+  | 'data-analytics'
+  | 'product-manager'
+  | 'sales-bdr'
+  | 'customer-success'
+  | 'video-editor'
+  | 'founder-executive'
+  | 'hr-people-ops';
 
 export interface RoleQuestion {
   level: 0 | 1 | 2 | 3 | 4;
@@ -34,6 +40,12 @@ export const ROLE_NAMES: Record<RoleId, { es: string; en: string }> = {
   'writers-editors': { es: 'Escritores y Editores', en: 'Writers & Editors' },
   'paid-marketing': { es: 'Marketing de Performance', en: 'Paid / Performance Marketing' },
   'data-analytics': { es: 'Datos y Analytics', en: 'Data & Analytics' },
+  'product-manager': { es: 'Product Manager', en: 'Product Manager' },
+  'sales-bdr': { es: 'Ventas & BDR', en: 'Sales & BDR' },
+  'customer-success': { es: 'Customer Success', en: 'Customer Success' },
+  'video-editor': { es: 'Editor de Video', en: 'Video Editor' },
+  'founder-executive': { es: 'Fundador & Ejecutivo', en: 'Founder & Executive' },
+  'hr-people-ops': { es: 'RR.HH. & People Ops', en: 'HR & People Ops' },
 };
 
 export const ROLE_ASSESSMENTS: Record<RoleId, RoleAssessment> = {
@@ -1744,6 +1756,1032 @@ export const ROLE_ASSESSMENTS: Record<RoleId, RoleAssessment> = {
         level: 4,
         levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
         statement: { es: 'Lidero la estrategia de datos con IA en mi organización — con una arquitectura definida, stack de herramientas, framework de gobernanza y KPIs de rendimiento.', en: 'I lead the AI data strategy at my organization — with a defined architecture, toolstack, governance framework, and performance KPIs.' },
+      },
+    ],
+  },
+'product-manager': {
+    roleId: 'product-manager',
+    roleName: { es: 'Product Manager', en: 'Product Manager' },
+    questions: [
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir primeros borradores de PRDs, especificaciones de features o historias de usuario a partir de notas o sesiones de whiteboard.', en: 'I use AI to write first-draft PRDs, feature specs, or user stories from rough notes or whiteboard sessions.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para resumir transcripciones de entrevistas con usuarios o grabaciones de pruebas de usabilidad en insights clave.', en: 'I have used AI to summarize user interview transcripts or usability test recordings into key insights.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para generar resúmenes de análisis competitivo o briefs de investigación de mercado más rápido que la investigación manual.', en: 'I use AI to generate competitor analysis summaries or market research briefs faster than manual research.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para crear presentaciones, actualizaciones para stakeholders o documentos de sprint review.', en: 'I have used AI to create presentation decks, stakeholder updates, or sprint review documents.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir criterios de aceptación, listas de edge cases o escenarios de QA para las features que estoy construyendo.', en: 'I use AI to write acceptance criteria, edge case lists, or QA test scenarios for features I\'m building.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He pedido a la IA que me ayude a priorizar un backlog explicando los trade-offs entre los elementos.', en: 'I have asked AI to help me prioritize a backlog by explaining trade-offs between items.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para generar user personas, mapas de empatía o frameworks de Jobs-to-be-Done a partir de datos de investigación.', en: 'I use AI to generate user personas, empathy maps, or Jobs-to-be-Done frameworks from research data.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado IA para redactar OKRs, métricas de éxito o frameworks de KPIs para iniciativas de producto.', en: 'I have used AI to draft OKRs, success metrics, or KPI frameworks for product initiatives.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para escribir hipótesis de A/B tests, diseños de experimentos y resúmenes de análisis post-test.', en: 'I use AI to write A/B test hypotheses, experiment designs, and post-test analysis summaries.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para sintetizar datos cualitativos de múltiples fuentes de investigación en un reporte único de insights priorizados.', en: 'I use AI to synthesize qualitative data from multiple research sources into a single prioritized insights report.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Mantengo una biblioteca de prompts específica para PM para tareas recurrentes: specs, briefs, análisis y comunicaciones con stakeholders.', en: 'I maintain a PM-specific prompt library for recurring tasks: specs, briefs, analysis, and stakeholder communications.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado IA para producir slides de roadmap o narrativas estratégicas que fueron directamente a liderazgo o inversionistas.', en: 'I have used AI to produce roadmap slides or strategic narratives that went directly to leadership or investors.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He producido una landing page o feature de producto de media fidelidad usando herramientas de IA (v0, Framer AI, Gamma, Claude Artifacts u otras) sin necesitar un desarrollador o diseñador para comenzar desde cero.', en: 'I have produced a mid-fidelity landing page or product feature using AI tools (v0, Framer AI, Gamma, Claude Artifacts, or similar) without needing a developer or designer to start from scratch.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para ejecutar inteligencia competitiva — rastreando lanzamientos de competidores, cambios de precios y posicionamiento semanalmente.', en: 'I use AI to run competitive intelligence — tracking competitor releases, pricing changes, and positioning weekly.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He usado IA para diseñar y documentar contratos de API, modelos de datos o especificaciones técnicas compartidas con ingeniería.', en: 'I have used AI to design and document API contracts, data models, or technical specs shared with engineering.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para generar resúmenes de retrospectivas de sprint, análisis de velocidad o reportes de rendimiento del equipo automáticamente.', en: 'I use AI to generate sprint retrospective summaries, velocity analyses, or team performance reports automatically.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para escribir e iterar en copy de product marketing — declaraciones de posicionamiento, anuncios de features y release notes.', en: 'I use AI to write and iterate on product marketing copy — positioning statements, feature announcements, release notes.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para analizar datos de NPS, tickets de soporte o razones de churn y generar recomendaciones de mejora del producto.', en: 'I use AI to analyze NPS data, support tickets, or churn reasons and generate product improvement recommendations.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He producido una landing page o feature de UI de alta fidelidad y lista para producción usando IA (Cursor, Webflow AI, Framer AI o generación de código) que se publicó o fue entregada a un cliente sin retrabajos significativos.', en: 'I have produced a high-fidelity, production-ready landing page or UI feature using AI (Cursor, Webflow AI, Framer AI, or code generation) that went live or was delivered to a client without significant rework.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Colaboro con compañeros de equipo usando GitHub — creando ramas, abriendo pull requests, revisando diffs y resolviendo conflictos de merge — con IA ayudándome a entender o escribir el código involucrado.', en: 'I collaborate with teammates using GitHub — creating branches, opening pull requests, reviewing diffs, and resolving merge conflicts — with AI helping me understand or write the code involved.' }, isNew: true,
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He conectado analíticas de producto (Mixpanel, Amplitude, GA4) a herramientas de IA que generan reportes de insights semanales automáticamente.', en: 'I have connected product analytics (Mixpanel, Amplitude, GA4) to AI tools that generate weekly insight reports automatically.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para construir modelos predictivos o análisis de cohortes — riesgo de churn, LTV, adopción de features — para guiar decisiones del roadmap.', en: 'I use AI to build predictive models or cohort analyses — churn risk, LTV, feature adoption — to guide roadmap decisions.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He construido o configurado herramientas internas de IA — generadores de specs, sintetizadores de research o frameworks de priorización — usadas por mi equipo.', en: 'I have built or configured internal AI tools — spec generators, research synthesizers, or prioritization frameworks — used by my team.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para monitorear feedback de usuarios en todos los canales (soporte, reseñas, redes sociales) y detectar temas en tiempo real.', en: 'I use AI to monitor user feedback across all channels (support, reviews, social) and surface themes in real time.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He entrenado IA con el contexto de nuestro producto y la uso para incorporar nuevos PMs o responder preguntas internas sobre el producto con precisión.', en: 'I have trained AI on our product\'s context and use it to onboard new PMs or answer internal product questions accurately.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para simular journeys de usuario o predecir cómo un cambio de feature impactará métricas clave antes de construirlo.', en: 'I use AI to simulate user journeys or predict how a feature change will impact key metrics before building it.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Mi equipo sigue un proceso documentado de product management asistido por IA que yo ayudé a definir, con mejoras medibles en velocidad de entrega.', en: 'My team follows a documented AI-assisted product management process I helped define, with measurable improvements in delivery speed.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'He diseñado experiencias de producto nativas de IA — productos donde la IA es la propuesta de valor central, no una capa de funcionalidad adicional.', en: 'I have designed AI-native product experiences — products where AI is core to the user value proposition, not a feature layer.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Uso agentes de IA que monitorean métricas de producto y detectan anomalías u oportunidades proactivamente sin mi intervención diaria.', en: 'I use AI agents that monitor product metrics and proactively surface anomalies or opportunities without my daily input.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Hago seguimiento del impacto de negocio del trabajo de PM asistido por IA — time-to-ship, velocidad de experimentación, ciclo de investigación — con datos reales.', en: 'I track the business impact of AI-assisted PM work — time-to-ship, experiment velocity, research cycle time — with real data.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Lidero la estrategia de producto con IA en mi organización — con un roadmap definido, stack de herramientas y metodología a nivel de equipo.', en: 'I lead the AI product strategy at my organization — with a defined roadmap, toolstack, and team-wide methodology.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Mentoreo a otros product managers en flujos de trabajo asistidos por IA y he documentado el playbook para la adopción en el equipo.', en: 'I mentor other product managers on AI-assisted workflows and have documented the playbook for team adoption.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Contribuyo al entendimiento de la comunidad de PM sobre IA a través de escritura, charlas, frameworks o herramientas open-source.', en: 'I contribute to the PM community\'s understanding of AI through writing, talks, frameworks, or open-source tooling.' },
+      },
+    ],
+  },
+  'sales-bdr': {
+    roleId: 'sales-bdr',
+    roleName: { es: 'Ventas & BDR', en: 'Sales & BDR' },
+    questions: [
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir primeros borradores de correos de outreach, mensajes de LinkedIn y guiones de llamadas en frío personalizados para cada prospecto.', en: 'I use AI to write first-draft outreach emails, LinkedIn messages, and cold call scripts personalized to each prospect.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para investigar la empresa de un prospecto — noticias recientes, financiamiento, pain points — antes de una llamada de ventas.', en: 'I have used AI to research a prospect\'s company — recent news, funding, pain points — before a sales call.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para generar guiones de manejo de objeciones o talk tracks para los rechazos más comunes que enfrento.', en: 'I use AI to generate objection-handling scripts or talk tracks for the most common pushbacks I face.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para resumir una grabación o transcripción de llamada de ventas en insights clave y próximos pasos.', en: 'I have used AI to summarize a sales call recording or transcript into key insights and next steps.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir correos de seguimiento después de demos o llamadas de discovery más rápido que escribiéndolos manualmente.', en: 'I use AI to write follow-up emails after demos or discovery calls faster than writing them manually.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para investigar el posicionamiento de un competidor y generar una battle card o documento comparativo.', en: 'I have used AI to research a competitor\'s positioning and generate a battle card or comparison document.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para construir secuencias de outreach multi-paso — correos, toques en LinkedIn y guiones de llamada — adaptadas a diferentes personas.', en: 'I use AI to build multi-step outreach sequences — emails, LinkedIn touches, and call scripts — tailored to different personas.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para generar propuestas personalizadas, pitch decks o one-pagers para cuentas y casos de uso específicos.', en: 'I use AI to generate personalized proposals, pitch decks, or one-pagers for specific accounts and use cases.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado IA para definir y puntuar ICPs (perfiles de cliente ideal) usando señales firmográficas y de comportamiento.', en: 'I have used AI to define and score ICP (ideal customer profiles) using firmographic and behavioral signals.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para escribir notas en el CRM, actualizar etapas de deals y registrar resúmenes de actividad después de cada interacción.', en: 'I use AI to write CRM notes, update deal stages, and log activity summaries after every interaction.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Mantengo una biblioteca de prompts específica para ventas: plantillas de outreach, guiones de objeciones, briefs de investigación y frameworks de propuestas.', en: 'I maintain a sales-specific prompt library: outreach templates, objection scripts, research briefs, and proposal frameworks.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para analizar los datos de mi pipeline e identificar deals en riesgo u oportunidades para acelerar.', en: 'I use AI to analyze my pipeline data and identify deals at risk or opportunities to accelerate.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He producido una landing page o feature de producto de media fidelidad usando herramientas de IA (v0, Framer AI, Gamma, Claude Artifacts u otras) sin necesitar un desarrollador o diseñador para comenzar desde cero.', en: 'I have produced a mid-fidelity landing page or product feature using AI tools (v0, Framer AI, Gamma, Claude Artifacts, or similar) without needing a developer or designer to start from scratch.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para generar casos de estudio personalizados, calculadoras de ROI o documentos de prueba de concepto para prospectos específicos.', en: 'I use AI to generate personalized case studies, ROI calculators, or proof-of-concept documents for specific prospects.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He conectado mi CRM a herramientas de IA que generan automáticamente resúmenes de deals, alertas de riesgo y recomendaciones de próximos pasos.', en: 'I have connected my CRM to AI tools that automatically generate deal summaries, risk flags, and next-step recommendations.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para monitorear empresas prospecto en busca de eventos detonantes — rondas de financiamiento, cambios de liderazgo, vacantes publicadas — en tiempo real.', en: 'I use AI to monitor prospect companies for trigger events — funding rounds, leadership changes, job postings — in real time.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para autocoachearme en llamadas — analizando transcripciones por ratio hablar/escuchar, preguntas de discovery faltantes y menciones competitivas.', en: 'I use AI to coach myself on calls — analyzing transcripts for talk/listen ratio, missing discovery questions, and competitive mentions.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He usado IA para producir planes de territorio, mapas de cuentas o planes estratégicos de cuenta para cuentas enterprise.', en: 'I have used AI to produce territory plans, account maps, or strategic account plans for enterprise accounts.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He producido una landing page o feature de UI de alta fidelidad y lista para producción usando IA (Cursor, Webflow AI, Framer AI o generación de código) que se publicó o fue entregada a un cliente sin retrabajos significativos.', en: 'I have produced a high-fidelity, production-ready landing page or UI feature using AI (Cursor, Webflow AI, Framer AI, or code generation) that went live or was delivered to a client without significant rework.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Colaboro con compañeros de equipo usando GitHub — creando ramas, abriendo pull requests, revisando diffs y resolviendo conflictos de merge — con IA ayudándome a entender o escribir el código involucrado.', en: 'I collaborate with teammates using GitHub — creating branches, opening pull requests, reviewing diffs, and resolving merge conflicts — with AI helping me understand or write the code involved.' }, isNew: true,
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He construido pipelines automatizados de prospección donde la IA identifica, califica y enriquece leads sin intervención manual.', en: 'I have built automated prospecting pipelines where AI identifies, qualifies, and enriches leads without manual intervention.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para ejecutar análisis de win/loss — leyendo notas de deals y transcripciones de llamadas para identificar patrones en deals ganados y perdidos.', en: 'I use AI to run win/loss analysis — reading deal notes and call transcripts to identify patterns in won and lost deals.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He entrenado IA con nuestro producto, info competitiva y metodología de ventas para generar outreach on-brand y preciso a escala.', en: 'I have trained AI on our product, competitive info, and sales methodology to generate on-brand, accurate outreach at scale.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para generar modelos de forecasting de ventas — prediciendo tasas de cierre, tamaño de deal y tiempo de cierre a partir de datos históricos.', en: 'I use AI to generate sales forecasting models — predicting close rates, deal size, and time-to-close from historical data.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He construido onboarding asistido por IA para nuevos representantes de ventas — materiales de capacitación, guiones de roleplay y trackers de ramp-up.', en: 'I have built AI-assisted onboarding for new sales reps — training materials, roleplay scripts, and ramp trackers.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para generar reportes semanales de pipeline que van a liderazgo con análisis y recomendaciones — con mínima edición manual.', en: 'I use AI to generate weekly pipeline reports that go to leadership with analysis and recommendations — minimal manual editing.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Mi equipo sigue un proceso de ventas asistido por IA documentado que yo ayudé a definir, con mejoras medibles en conversión o eficiencia.', en: 'My team follows a documented AI-assisted sales process I helped define, with measurable improvements in conversion or efficiency.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'He construido herramientas de IA personalizadas para ventas — modelos de lead scoring, generadores de outreach o dashboards de deal intelligence — usadas en producción.', en: 'I have built custom AI sales tools — lead scoring models, outreach generators, or deal intelligence dashboards — used in production.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Gestiono un pipeline de ventas usando flujos de trabajo de IA donde la prospección, calificación y seguimiento operan en gran medida de forma autónoma.', en: 'I manage a sales pipeline using AI workflows where prospecting, qualification, and follow-up run largely autonomously.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Hago seguimiento del ROI de la IA en ventas — ingreso por representante, velocidad de deals, tasas de respuesta de outreach — con métricas específicas.', en: 'I track the ROI of AI in sales — revenue per rep, deal velocity, outreach response rates — with specific metrics.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Mentoreo a profesionales de ventas en venta asistida por IA y he documentado la metodología para la adopción en el equipo.', en: 'I mentor sales professionals on AI-assisted selling and have documented the methodology for team adoption.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Contribuyo al entendimiento de la comunidad de ventas sobre IA a través de casos de estudio, frameworks o charlas.', en: 'I contribute to the sales community\'s understanding of AI through case studies, frameworks, or speaking engagements.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Lidero la estrategia de ventas con IA en mi organización — con un playbook definido, stack de herramientas y metas de rendimiento medibles.', en: 'I lead the AI sales strategy at my organization — with a defined playbook, toolstack, and measurable performance targets.' },
+      },
+    ],
+  },
+  'customer-success': {
+    roleId: 'customer-success',
+    roleName: { es: 'Customer Success', en: 'Customer Success' },
+    questions: [
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir correos de onboarding, mensajes de check-in y comunicaciones de renovación personalizados para cada cliente.', en: 'I use AI to write onboarding emails, check-in messages, and renewal communications personalized to each customer.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para resumir una transcripción de llamada con cliente o hilo de tickets de soporte en problemas clave y acciones a tomar.', en: 'I have used AI to summarize a customer call transcript or support ticket thread into key issues and action items.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para investigar el negocio de un cliente — noticias recientes, tendencias de la industria — antes de un QBR o llamada de seguimiento.', en: 'I use AI to research a customer\'s business — recent news, industry trends — before a QBR or check-in call.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para generar documentación de FAQ, artículos de base de conocimiento o guías paso a paso para la educación del cliente.', en: 'I have used AI to generate FAQ documentation, knowledge base articles, or how-to guides for customer education.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para redactar presentaciones de executive business review (QBR) o resúmenes de salud del cliente.', en: 'I use AI to draft executive business review (QBR) presentations or customer health summaries.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para escribir correos de escalación, propuestas de renovación o guiones de pitch de upsell.', en: 'I have used AI to write escalation emails, renewal proposals, or upsell pitch scripts.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para generar planes de éxito personalizados, playbooks de onboarding o hitos de adopción para cuentas individuales.', en: 'I use AI to generate personalized success plans, onboarding playbooks, or adoption milestones for individual accounts.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para analizar datos de uso de producto e identificar clientes en riesgo de churn o listos para expansión.', en: 'I use AI to analyze product usage data and identify customers who are at risk of churning or ready for expansion.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado IA para crear materiales de capacitación por rol, guiones de video o secuencias de onboarding para clientes a escala.', en: 'I have used AI to create role-specific training materials, video scripts, or onboarding sequences for customers at scale.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Mantengo una biblioteca de prompts específica para CS: plantillas de onboarding, guiones de check-in, frameworks de escalación y estructuras de QBR.', en: 'I maintain a CS-specific prompt library: onboarding templates, check-in scripts, escalation frameworks, and QBR structures.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para generar health scores de clientes combinando datos de uso de producto, NPS y engagement.', en: 'I use AI to generate customer health scores by combining product usage, NPS, and engagement data.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado IA para producir casos de estudio de clientes, historias de éxito o resúmenes de ROI para marketing y ventas.', en: 'I have used AI to produce customer case studies, success stories, or ROI summaries for marketing and sales.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He producido una landing page o feature de producto de media fidelidad usando herramientas de IA (v0, Framer AI, Gamma, Claude Artifacts u otras) sin necesitar un desarrollador o diseñador para comenzar desde cero.', en: 'I have produced a mid-fidelity landing page or product feature using AI tools (v0, Framer AI, Gamma, Claude Artifacts, or similar) without needing a developer or designer to start from scratch.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para monitorear el sentimiento del cliente en tickets de soporte, respuestas de NPS y reseñas de producto — señalando automáticamente cuentas en riesgo.', en: 'I use AI to monitor customer sentiment across support tickets, NPS responses, and product reviews — automatically flagging at-risk accounts.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He construido procesos de renovación asistidos por IA — la IA genera propuestas de renovación, evaluaciones de riesgo y guiones de negociación automáticamente.', en: 'I have built AI-assisted renewal processes — AI generates renewal proposals, risk assessments, and negotiation scripts automatically.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para analizar datos de churn y generar playbooks para prevenir tipos específicos de deserción de clientes.', en: 'I use AI to analyze churn data and generate playbooks for preventing specific types of customer attrition.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He conectado mi CRM a herramientas de IA que generan resúmenes semanales de salud de cuentas sin intervención manual.', en: 'I have connected my CRM to AI tools that generate weekly account health summaries without manual input.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para producir modelos de segmentación de clientes — agrupando cuentas por comportamiento, salud y potencial de expansión.', en: 'I use AI to produce customer segmentation models — grouping accounts by behavior, health, and expansion potential.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He producido una landing page o feature de UI de alta fidelidad y lista para producción usando IA (Cursor, Webflow AI, Framer AI o generación de código) que se publicó o fue entregada a un cliente sin retrabajos significativos.', en: 'I have produced a high-fidelity, production-ready landing page or UI feature using AI (Cursor, Webflow AI, Framer AI, or code generation) that went live or was delivered to a client without significant rework.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Colaboro con compañeros de equipo usando GitHub — creando ramas, abriendo pull requests, revisando diffs y resolviendo conflictos de merge — con IA ayudándome a entender o escribir el código involucrado.', en: 'I collaborate with teammates using GitHub — creating branches, opening pull requests, reviewing diffs, and resolving merge conflicts — with AI helping me understand or write the code involved.' }, isNew: true,
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He construido pipelines automatizados de monitoreo de salud del cliente donde la IA lee datos de producto y dispara intervenciones automáticamente.', en: 'I have built automated customer health monitoring pipelines where AI reads product data and triggers interventions automatically.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para predecir probabilidad de churn, potencial de expansión y LTV de cada cuenta — informando decisiones de asignación de recursos.', en: 'I use AI to predict churn probability, expansion potential, and LTV for each account — informing resource allocation decisions.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He entrenado IA con nuestro producto y contexto del cliente para generar respuestas precisas y on-brand a preguntas comunes de clientes.', en: 'I have trained AI on our product and customer context to generate accurate, on-brand responses to common customer questions.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para generar coaching en tiempo real para conversaciones de CS — señalando oportunidades perdidas o sugiriendo mejores acciones a seguir.', en: 'I use AI to generate real-time coaching for CS conversations — flagging missed opportunities or suggesting next-best actions.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He construido flujos de generación automatizada de QBRs donde la IA crea presentaciones específicas por cuenta a partir de datos de uso de producto.', en: 'I have built automated QBR generation workflows where AI creates account-specific presentations from product usage data.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para producir reportes de rendimiento del equipo de CS — métricas de clientes, KPIs del equipo y recomendaciones — automáticamente cada semana.', en: 'I use AI to produce CS team performance reports — customer metrics, team KPIs, and recommendations — automatically each week.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Mi equipo de CS sigue un flujo de trabajo asistido por IA documentado que yo construí, con mejoras medibles en retención, NPS o tiempo por cuenta.', en: 'My CS team follows a documented AI-assisted workflow I built, with measurable improvements in retention, NPS, or time-per-account.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'He construido herramientas de IA personalizadas para CS — modelos de predicción de churn, motores de health score o bots de onboarding automatizado — usadas en producción.', en: 'I have built custom AI CS tools — churn prediction models, health score engines, or automated onboarding bots — used in production.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Gestiono un portafolio de clientes donde la IA maneja monitoreo de salud rutinario, alertas y comunicaciones de forma autónoma.', en: 'I manage a customer portfolio where AI handles routine health monitoring, alerts, and communications autonomously.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Hago seguimiento del ROI de la IA en customer success — reducción de tasa de churn, mejora de NPS, costo por cliente gestionado — con datos reales.', en: 'I track the ROI of AI in customer success — churn rate reduction, NPS improvement, cost-per-customer-managed — with real data.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Mentoreo a profesionales de CS en flujos de trabajo asistidos por IA y he documentado la metodología para la adopción en el equipo.', en: 'I mentor CS professionals on AI-assisted workflows and have documented the methodology for team adoption.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Contribuyo al entendimiento de la comunidad de CS sobre IA a través de casos de estudio, frameworks o charlas.', en: 'I contribute to the CS community\'s understanding of AI through case studies, frameworks, or speaking engagements.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Lidero la estrategia de customer success con IA en mi organización — con un playbook definido, stack de herramientas y benchmarks de retención.', en: 'I lead the AI customer success strategy at my organization — with a defined playbook, toolstack, and retention benchmarks.' },
+      },
+    ],
+  },
+  'video-editor': {
+    roleId: 'video-editor',
+    roleName: { es: 'Editor de Video', en: 'Video Editor' },
+    questions: [
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir guiones de video, outlines de episodios o listas de tomas a partir de un brief o tema.', en: 'I use AI to write video scripts, episode outlines, or shot lists from a brief or topic prompt.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado herramientas de IA para auto-generar subtítulos, captions o transcripciones para contenido de video (Descript, Captions.ai, CapCut).', en: 'I have used AI tools to auto-generate captions, subtitles, or transcriptions for video content (Descript, Captions.ai, CapCut).' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para generar conceptos de thumbnails, variaciones de títulos o metadata de plataformas para mejorar la visibilidad del contenido.', en: 'I use AI to generate thumbnail concepts, title variations, or platform metadata to improve discoverability.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado Runway, Pika o Kling para generar un clip de video corto o motion graphic con IA.', en: 'I have used Runway, Pika, or Kling to generate a short AI video clip or motion graphic.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para eliminar ruido de fondo, limpiar audio o mejorar la calidad de video automáticamente.', en: 'I use AI to remove background noise, clean up audio, or enhance video quality automatically.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para generar voiceovers o narración usando herramientas de texto-a-voz (ElevenLabs, Murf, Play.ht).', en: 'I have used AI to generate voiceovers or narration using text-to-speech tools (ElevenLabs, Murf, Play.ht).' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para cortar automáticamente videos de formato largo en clips cortos optimizados para redes sociales (Opus Clip, Descript, Vizard).', en: 'I use AI to automatically cut long-form videos into short clips optimized for social media (Opus Clip, Descript, Vizard).' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado HeyGen o Synthesia para crear un video de avatar con IA tipo talking-head a partir de un guión de texto.', en: 'I have used HeyGen or Synthesia to create a talking-head AI avatar video from a text script.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para clonar una voz — la mía o la de un cliente — para narración consistente en múltiples videos sin re-grabar.', en: 'I use AI to clone a voice — my own or a client\'s — for consistent narration across multiple videos without re-recording.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para generar conceptos de B-roll, descripciones de tomas o paneles de storyboard para una producción de video.', en: 'I use AI to generate B-roll concepts, shot descriptions, or storyboard panels for a video production.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para traducir o doblar videos a múltiples idiomas usando herramientas de lip-sync con IA.', en: 'I use AI to translate or dub videos into multiple languages using AI lip-sync tools.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Mantengo una biblioteca de prompts específica para producción: plantillas de guiones, briefs de thumbnails, estructuras de storyboard y frameworks de metadata.', en: 'I maintain a production-specific prompt library: script templates, thumbnail briefs, storyboard structures, and metadata frameworks.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He producido una landing page o feature de producto de media fidelidad usando herramientas de IA (v0, Framer AI, Gamma, Claude Artifacts u otras) sin necesitar un desarrollador o diseñador para comenzar desde cero.', en: 'I have produced a mid-fidelity landing page or product feature using AI tools (v0, Framer AI, Gamma, Claude Artifacts, or similar) without needing a developer or designer to start from scratch.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para automatizar flujos de edición de video — cortes rough, corrección de color, normalización de audio — que antes requerían edición manual.', en: 'I use AI to automate video editing workflows — rough cuts, color grading, audio normalization — that previously required manual editing.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He usado IA para producir un video completo de guión a exportación final con mínima intervención de edición manual.', en: 'I have used AI to produce a complete video from script to final export with minimal manual editing intervention.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para generar motion graphics, texto animado o efectos visuales que antes requerían conocimientos de After Effects.', en: 'I use AI to generate motion graphics, animated text, or visual effects that would previously require After Effects skills.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para analizar datos de rendimiento de video y generar recomendaciones para mejorar engagement, retención o CTR.', en: 'I use AI to analyze video performance data and generate recommendations for improving engagement, retention, or CTR.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He construido un pipeline de producción de video donde la IA maneja guiones, edición, subtítulos y generación de thumbnails de forma sistemática.', en: 'I have built a video production pipeline where AI handles scripting, editing, captions, and thumbnail generation systematically.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He producido una landing page o feature de UI de alta fidelidad y lista para producción usando IA (Cursor, Webflow AI, Framer AI o generación de código) que se publicó o fue entregada a un cliente sin retrabajos significativos.', en: 'I have produced a high-fidelity, production-ready landing page or UI feature using AI (Cursor, Webflow AI, Framer AI, or code generation) that went live or was delivered to a client without significant rework.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Colaboro con compañeros de equipo usando GitHub — creando ramas, abriendo pull requests, revisando diffs y resolviendo conflictos de merge — con IA ayudándome a entender o escribir el código involucrado.', en: 'I collaborate with teammates using GitHub — creating branches, opening pull requests, reviewing diffs, and resolving merge conflicts — with AI helping me understand or write the code involved.' }, isNew: true,
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He usado IA para generar un cortometraje, anuncio o video de marca completamente original donde la IA creó los visuales, audio y narrativa.', en: 'I have used AI to generate a fully original short film, ad, or branded video where AI created the visuals, audio, and narrative.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para producir contenido de video personalizado a escala — diferentes versiones para diferentes audiencias — sin re-grabar.', en: 'I use AI to produce personalized video content at scale — different versions for different audiences — without re-shooting.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He conectado plataformas de video (YouTube, Vimeo) a herramientas de IA que generan reportes de rendimiento y recomendaciones de contenido semanalmente.', en: 'I have connected video platforms (YouTube, Vimeo) to AI tools that generate performance reports and content recommendations weekly.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para construir experiencias de video interactivas — narrativas ramificadas, mensajes personalizados o contenido dinámico — para clientes.', en: 'I use AI to build interactive video experiences — branching narratives, personalized messages, or dynamic content — for clients.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He entrenado IA con los lineamientos de marca de un cliente para generar contenido de video on-brand con estilo visual y tono consistentes.', en: 'I have trained AI on a client\'s brand guidelines to generate on-brand video content with consistent visual style and tone.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para escribir propuestas, documentos de tratamiento y briefs de producción para proyectos con clientes — reduciendo el tiempo de pre-producción.', en: 'I use AI to write proposals, treatment documents, and production briefs for client projects — reducing pre-production time.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Mi equipo de producción sigue un flujo de trabajo asistido por IA documentado que yo construí, con reducciones medibles en tiempo de entrega y costo de producción.', en: 'My production team follows a documented AI-assisted workflow I built, with measurable reductions in delivery time and production cost.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'He construido herramientas de IA personalizadas para video — pipelines de repurposing automatizado, generadores de video con voz de marca o dashboards de analytics — usadas en producción.', en: 'I have built custom AI video tools — automated repurposing pipelines, brand voice video generators, or analytics dashboards — used in production.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Produzco video a una escala que antes era imposible — múltiples videos completamente producidos por día — usando flujos de trabajo potenciados por IA.', en: 'I produce video at a scale that was previously impossible — multiple fully-produced videos per day — using AI-powered workflows.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Hago seguimiento del ROI de la IA en producción de video — horas ahorradas, costo por minuto producido, métricas de calidad — con datos reales.', en: 'I track the ROI of AI in video production — hours saved, cost per minute produced, quality metrics — with real data.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Mentoreo a profesionales de video en flujos de producción asistidos por IA y he documentado la metodología públicamente.', en: 'I mentor video professionals on AI-assisted production workflows and have documented the methodology publicly.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Contribuyo al entendimiento de la comunidad de video sobre IA a través de tutoriales, casos de estudio o charlas.', en: 'I contribute to the video community\'s understanding of AI through tutorials, case studies, or speaking engagements.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Lidero la estrategia de video con IA en mi organización — con un stack de herramientas definido, proceso de producción y estándares de calidad.', en: 'I lead the AI video strategy at my organization — with a defined toolstack, production process, and quality standards.' },
+      },
+    ],
+  },
+  'founder-executive': {
+    roleId: 'founder-executive',
+    roleName: { es: 'Fundador & Ejecutivo', en: 'Founder & Executive' },
+    questions: [
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir primeros borradores de documentos estratégicos — actualizaciones para inversionistas, decks de junta directiva, planes anuales — más rápido que manualmente.', en: 'I use AI to write first drafts of strategic documents — investor updates, board decks, annual plans — faster than manually.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para investigar un mercado, panorama competitivo o tesis de inversión antes de una reunión o decisión clave.', en: 'I have used AI to research a market, competitive landscape, or investment thesis before a key meeting or decision.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para resumir documentos extensos, reportes o grabaciones de reuniones en puntos clave y acciones a tomar.', en: 'I use AI to summarize long documents, reports, or meeting recordings into key points and action items.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para redactar comunicaciones importantes — anuncios al equipo, correos a clientes o acuerdos con socios.', en: 'I have used AI to draft important communications — team announcements, customer emails, or partner agreements.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para generar y stress-testear ideas de nuevos productos, servicios o modelos de negocio rápidamente.', en: 'I use AI to generate and stress-test ideas for new products, services, or business models quickly.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para prepararme para conversaciones difíciles — negociaciones, evaluaciones de desempeño, pitches a inversionistas — con escenarios y puntos de conversación.', en: 'I have used AI to prepare for difficult conversations — negotiations, performance reviews, investor pitches — with scenarios and talking points.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para realizar inteligencia competitiva — rastreando movimientos de competidores, cambios de precios y señales de mercado semanalmente.', en: 'I use AI to conduct competitive intelligence — tracking competitor moves, pricing changes, and market signals weekly.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado IA para construir modelos financieros, proyecciones o análisis de escenarios más rápido que con hojas de cálculo tradicionales.', en: 'I have used AI to build financial models, forecasts, or scenario analyses faster than with traditional spreadsheets.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para generar contenido de thought leadership — posts de LinkedIn, artículos, charlas — que refleja mi voz auténtica.', en: 'I use AI to generate content for thought leadership — LinkedIn posts, articles, talks — that reflects my authentic voice.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para preparar materiales para inversionistas — pitch decks, documentos de data room y respuestas de due diligence — a un alto estándar.', en: 'I use AI to prepare investor materials — pitch decks, data room documents, and due diligence responses — at a high standard.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Mantengo una biblioteca de prompts específica para ejecutivos para tareas recurrentes: briefs estratégicos, comunicaciones, análisis y planificación.', en: 'I maintain an executive-specific prompt library for recurring tasks: strategic briefs, communications, analysis, and planning.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado IA para ejecutar procesos de toma de decisiones estructurados — análisis pro/contra, evaluación de riesgos, mapeo de stakeholders — en decisiones importantes.', en: 'I have used AI to run structured decision-making processes — pro/con analysis, risk assessment, stakeholder mapping — on major decisions.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He producido una landing page o feature de producto de media fidelidad usando herramientas de IA (v0, Framer AI, Gamma, Claude Artifacts u otras) sin necesitar un desarrollador o diseñador para comenzar desde cero.', en: 'I have produced a mid-fidelity landing page or product feature using AI tools (v0, Framer AI, Gamma, Claude Artifacts, or similar) without needing a developer or designer to start from scratch.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para generar resúmenes ejecutivos semanales de todas las funciones del negocio — ventas, marketing, producto, operaciones — automáticamente.', en: 'I use AI to generate weekly executive summaries across all business functions — sales, marketing, product, ops — automatically.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He conectado datos de negocio (CRM, finanzas, analíticas de producto) a herramientas de IA que detectan insights y anomalías proactivamente.', en: 'I have connected business data (CRM, finance, product analytics) to AI tools that surface insights and anomalies proactively.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para construir e iterar en documentos de estrategia de la empresa — OKRs, posicionamiento, planes de go-to-market — con mayor profundidad y velocidad.', en: 'I use AI to build and iterate on company strategy documents — OKRs, positioning, go-to-market plans — at greater depth and speed.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He usado IA para diseñar y documentar procesos organizacionales, playbooks o sistemas operativos para mi equipo.', en: 'I have used AI to design and document organizational processes, playbooks, or operating systems for my team.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para monitorear tendencias de la industria, cambios regulatorios y amenazas competitivas y briefear a mi equipo de liderazgo semanalmente.', en: 'I use AI to monitor industry trends, regulatory changes, and competitive threats and brief my leadership team weekly.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He producido una landing page o feature de UI de alta fidelidad y lista para producción usando IA (Cursor, Webflow AI, Framer AI o generación de código) que se publicó o fue entregada a un cliente sin retrabajos significativos.', en: 'I have produced a high-fidelity, production-ready landing page or UI feature using AI (Cursor, Webflow AI, Framer AI, or code generation) that went live or was delivered to a client without significant rework.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Colaboro con compañeros de equipo usando GitHub — creando ramas, abriendo pull requests, revisando diffs y resolviendo conflictos de merge — con IA ayudándome a entender o escribir el código involucrado.', en: 'I collaborate with teammates using GitHub — creating branches, opening pull requests, reviewing diffs, and resolving merge conflicts — with AI helping me understand or write the code involved.' }, isNew: true,
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He construido una cadencia operativa potenciada por IA — reportes automatizados, dashboards y resúmenes que funcionan sin mi intervención diaria.', en: 'I have built an AI-powered operating cadence — automated reports, dashboards, and summaries that run without my daily input.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para identificar, evaluar y priorizar talento — la IA filtra, puntúa y resume candidatos antes de la revisión humana.', en: 'I use AI to identify, assess, and prioritize talent — AI screens, scores, and summarizes candidates before human review.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He usado IA para acelerar funciones de negocio importantes — reemplazando o aumentando roles que habrían requerido contrataciones adicionales.', en: 'I have used AI to accelerate major business functions — replacing or augmenting roles that would have required additional hires.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para modelar y stress-testear escenarios estratégicos — entrada a mercados, cambios de precios, M&A — antes de tomar decisiones.', en: 'I use AI to model and stress-test strategic scenarios — market entry, pricing changes, M&A — before committing to decisions.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He entrenado IA con el contexto, cultura y principios operativos de mi empresa para guiar decisiones del equipo de forma consistente.', en: 'I have trained AI on my company\'s context, culture, and operating principles to guide team decisions consistently.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para generar materiales de junta directiva — resúmenes financieros, actualizaciones estratégicas y dashboards de métricas — automáticamente cada trimestre.', en: 'I use AI to generate board materials — financial summaries, strategic updates, and metric dashboards — automatically each quarter.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Mi organización tiene una estrategia de adopción de IA definida que yo diseñé, con resultados medibles de productividad y ventaja competitiva.', en: 'My organization has a defined AI adoption strategy I designed, with measurable productivity and competitive advantage outcomes.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'He construido productos o servicios nativos de IA — donde la IA es el motor central de valor, no una herramienta de productividad agregada.', en: 'I have built AI-native products or services — where AI is the core value driver, not a productivity tool layered on top.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Uso agentes de IA que monitorean el negocio de forma autónoma, detectan problemas críticos y redactan acciones recomendadas sin mi intervención.', en: 'I use AI agents that autonomously monitor the business, surface critical issues, and draft recommended actions without my prompt.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Hago seguimiento del ROI de la IA en toda la organización — impacto en ingresos, ahorro de costos, posicionamiento competitivo — con métricas reales.', en: 'I track the ROI of AI across the entire organization — revenue impact, cost savings, competitive positioning — with real metrics.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Lidero la transformación con IA de mi organización — con presupuesto, roadmap, estructura de responsabilidad y resultados medibles.', en: 'I lead the AI transformation of my organization — with a budget, roadmap, accountability structure, and measurable outcomes.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Mentoreo a otros fundadores y ejecutivos en estrategia de adopción de IA y he documentado el framework públicamente.', en: 'I mentor other founders and executives on AI adoption strategy and have documented the framework publicly.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Contribuyo al entendimiento de la comunidad de startups y ejecutivos sobre IA a través de escritura, inversión, asesoría o charlas.', en: 'I contribute to the startup and executive community\'s understanding of AI through writing, investing, advising, or speaking.' },
+      },
+    ],
+  },
+  'hr-people-ops': {
+    roleId: 'hr-people-ops',
+    roleName: { es: 'RR.HH. & People Ops', en: 'HR & People Ops' },
+    questions: [
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir descripciones de puesto, scorecards de rol y criterios de contratación más rápido y con menos sesgo que escribiéndolos manualmente.', en: 'I use AI to write job descriptions, role scorecards, and hiring criteria faster and with less bias than writing them manually.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para filtrar CVs — generando shortlists o puntuando candidatos contra criterios definidos del rol.', en: 'I have used AI to screen resumes — generating shortlists or scoring candidates against defined role criteria.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir guías de preguntas de entrevista estructurada, frameworks de competencias o rúbricas de evaluación para roles específicos.', en: 'I use AI to write structured interview question guides, competency frameworks, or scoring rubrics for specific roles.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para redactar cartas oferta, contratos laborales o comunicaciones de bienvenida para el onboarding.', en: 'I have used AI to draft offer letters, employment contracts, or onboarding welcome communications.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'Uso IA para escribir políticas de RR.HH., secciones del manual del empleado o documentación de compliance.', en: 'I use AI to write HR policies, employee handbook sections, or compliance documentation.' },
+      },
+      {
+        level: 0,
+        levelLabel: { es: 'Nivel 1 — Explorador', en: 'Level 1 — Explorer' },
+        statement: { es: 'He usado IA para resumir resultados de encuestas de empleados o datos de entrevistas de salida en temas accionables clave.', en: 'I have used AI to summarize employee survey results or exit interview data into key actionable themes.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para generar planes de onboarding personalizados, agendas de primera semana y rutas de aprendizaje específicas por rol para nuevos empleados.', en: 'I use AI to generate personalized onboarding plans, first-week schedules, and role-specific learning paths for new hires.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para redactar plantillas de evaluación de desempeño, guías de calibración y frameworks de feedback para managers.', en: 'I use AI to draft performance review templates, calibration guides, and manager feedback frameworks.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado IA para escribir mensajes de outreach para sourcing de candidatos pasivos — personalizados según su background y fit con el rol.', en: 'I have used AI to write sourcing outreach messages for passive candidates — personalized to their background and role fit.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Uso IA para generar contenido de L&D — materiales de capacitación, módulos de microlearning o planes de upskilling — para roles específicos.', en: 'I use AI to generate L&D content — training materials, microlearning modules, or upskilling plans — for specific roles.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'Mantengo una biblioteca de prompts específica para RR.HH.: plantillas de JD, guías de entrevista, frameworks de políticas y scripts de comunicación.', en: 'I maintain an HR-specific prompt library: JD templates, interview guides, policy frameworks, and communication scripts.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He usado IA para analizar datos de compensación y generar recomendaciones de bandas salariales o reportes de benchmarking de mercado.', en: 'I have used AI to analyze compensation data and generate salary band recommendations or market benchmarking reports.' },
+      },
+      {
+        level: 1,
+        levelLabel: { es: 'Nivel 2 — Aprendiz', en: 'Level 2 — Learner' },
+        statement: { es: 'He producido una landing page o feature de producto de media fidelidad usando herramientas de IA (v0, Framer AI, Gamma, Claude Artifacts u otras) sin necesitar un desarrollador o diseñador para comenzar desde cero.', en: 'I have produced a mid-fidelity landing page or product feature using AI tools (v0, Framer AI, Gamma, Claude Artifacts, or similar) without needing a developer or designer to start from scratch.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para construir y mantener un pipeline de talento — la IA identifica, sourcea y trackea candidatos para roles futuros automáticamente.', en: 'I use AI to build and maintain a talent pipeline — AI identifies, sources, and tracks candidates for future roles automatically.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He conectado nuestro ATS y HRIS a herramientas de IA que generan métricas semanales de contratación, salud del pipeline e insights de talento.', en: 'I have connected our ATS and HRIS to AI tools that generate weekly hiring metrics, pipeline health, and talent insights.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para ejecutar análisis de sentimiento en encuestas de empleados, reseñas de Glassdoor o datos de engagement para detectar señales culturales.', en: 'I use AI to run sentiment analysis on employee surveys, Glassdoor reviews, or engagement data to surface culture signals.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He construido flujos de gestión del desempeño asistidos por IA — la IA redacta resúmenes de evaluación, señala outliers e identifica necesidades de coaching.', en: 'I have built AI-assisted performance management workflows — AI drafts review summaries, flags outliers, and identifies coaching needs.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Uso IA para generar analíticas de DEI — identificando patrones de sesgo en contratación, promociones o compensación — y proponer intervenciones.', en: 'I use AI to generate DEI analytics — identifying bias patterns in hiring, promotion, or compensation — and propose interventions.' },
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'He producido una landing page o feature de UI de alta fidelidad y lista para producción usando IA (Cursor, Webflow AI, Framer AI o generación de código) que se publicó o fue entregada a un cliente sin retrabajos significativos.', en: 'I have produced a high-fidelity, production-ready landing page or UI feature using AI (Cursor, Webflow AI, Framer AI, or code generation) that went live or was delivered to a client without significant rework.' }, isNew: true,
+      },
+      {
+        level: 2,
+        levelLabel: { es: 'Nivel 3 — Practicante', en: 'Level 3 — Practitioner' },
+        statement: { es: 'Colaboro con compañeros de equipo usando GitHub — creando ramas, abriendo pull requests, revisando diffs y resolviendo conflictos de merge — con IA ayudándome a entender o escribir el código involucrado.', en: 'I collaborate with teammates using GitHub — creating branches, opening pull requests, reviewing diffs, and resolving merge conflicts — with AI helping me understand or write the code involved.' }, isNew: true,
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He construido pipelines automatizados de adquisición de talento donde la IA sourcea, filtra y agenda entrevistas con mínima intervención humana.', en: 'I have built automated talent acquisition pipelines where AI sources, screens, and schedules interviews with minimal human input.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para predecir rotación de empleados — identificando personas en riesgo antes de que renuncien usando señales de comportamiento y desempeño.', en: 'I use AI to predict employee attrition — identifying at-risk employees before they resign using behavioral and performance signals.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He entrenado IA con la cultura y valores de nuestra empresa para evaluar el fit cultural de candidatos más allá de habilidades y experiencia.', en: 'I have trained AI on our company culture and values to evaluate candidate fit beyond skills and experience alone.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para generar reportes de people analytics — proyecciones de headcount, análisis de brechas de habilidades y planificación de workforce — automáticamente.', en: 'I use AI to generate people analytics reports — headcount forecasts, skill gap analyses, and workforce planning — automatically.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'He construido experiencias de onboarding potenciadas por IA — personalizadas, interactivas y adaptativas al rol y ritmo de cada nuevo empleado.', en: 'I have built AI-powered onboarding experiences — personalized, interactive, and adaptive to each new hire\'s role and pace.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Uso IA para monitorear y benchmarkear las habilidades del equipo contra estándares de la industria y auto-generar recomendaciones de L&D.', en: 'I use AI to monitor and benchmark team skills against industry standards and auto-generate L&D recommendations.' },
+      },
+      {
+        level: 3,
+        levelLabel: { es: 'Nivel 4 — Avanzado', en: 'Level 4 — Advanced' },
+        statement: { es: 'Mi equipo de people sigue un proceso de RR.HH. asistido por IA documentado que yo construí, con mejoras medibles en time-to-hire, retención o engagement.', en: 'My people team follows a documented AI-assisted HR process I built, with measurable improvements in time-to-hire, retention, or engagement.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'He construido herramientas de IA personalizadas para RR.HH. — filtros de CVs, modelos de culture-fit o predictores de rotación — usadas en producción.', en: 'I have built custom AI HR tools — resume screeners, culture-fit models, or attrition predictors — used in production.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Gestiono una operación de talento a escala usando flujos de trabajo de IA que requieren mínima intervención manual por candidato o empleado.', en: 'I manage a talent operation at scale using AI workflows that require minimal manual intervention per candidate or employee.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Hago seguimiento del ROI de la IA en RR.HH. — costo por contratación, time-to-hire, tasa de retención, ROI de capacitación — con métricas específicas.', en: 'I track the ROI of AI in HR — cost-per-hire, time-to-hire, retention rate, training ROI — with specific metrics.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Mentoreo a profesionales de RR.HH. en operaciones de people asistidas por IA y he documentado la metodología para la adopción en el equipo.', en: 'I mentor HR professionals on AI-assisted people operations and have documented the methodology for team adoption.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Contribuyo al entendimiento de la comunidad de RR.HH. sobre IA a través de casos de estudio, charlas o frameworks publicados.', en: 'I contribute to the HR community\'s understanding of AI through case studies, talks, or published frameworks.' },
+      },
+      {
+        level: 4,
+        levelLabel: { es: 'Nivel 5 — Catalizador', en: 'Level 5 — Catalyst' },
+        statement: { es: 'Lidero la estrategia de people con IA en mi organización — definiendo estándares de competencia en IA, programas de capacitación y roadmaps de adopción a nivel empresa.', en: 'I lead the AI people strategy at my organization — defining AI competency standards, training programs, and adoption roadmaps company-wide.' },
       },
     ],
   },

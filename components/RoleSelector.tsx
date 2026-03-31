@@ -11,16 +11,22 @@ interface RoleSelectorProps {
 }
 
 const ROLE_ORDER: RoleId[] = [
-  "ux-ui-design",
-  "webflow-developer",
-  "seo-specialist",
-  "growth-marketing",
+  "product-manager",
+  "founder-executive",
   "full-stack-developer",
+  "ux-ui-design",
   "product-designer",
+  "growth-marketing",
+  "sales-bdr",
+  "customer-success",
+  "data-analytics",
+  "video-editor",
   "social-media",
   "writers-editors",
   "paid-marketing",
-  "data-analytics",
+  "hr-people-ops",
+  "seo-specialist",
+  "webflow-developer",
 ];
 
 const UI_TEXT = {

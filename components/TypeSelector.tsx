@@ -35,7 +35,7 @@ const cards: {
       en: "How well are you using AI across your entire work life.",
       es: "Qué tan bien estás usando IA en toda tu vida laboral.",
     },
-    stats: { en: "15 questions · ~5 min", es: "15 preguntas · ~5 min" },
+    stats: { en: "15 questions · ~2 min", es: "15 preguntas · ~2 min" },
     icon: "👤",
   },
   {
@@ -46,8 +46,8 @@ const cards: {
       es: "Qué tan bien estás usando IA en tu disciplina específica.",
     },
     stats: {
-      en: "33 questions · ~7 min",
-      es: "33 preguntas · ~7 min",
+      en: "33 questions · ~4 min",
+      es: "33 preguntas · ~4 min",
     },
     recommended: true,
     icon: "🎯",
@@ -59,7 +59,7 @@ const cards: {
       en: "How ready is your organization for AI adoption across 7 key dimensions.",
       es: "Qué tan preparada está tu organización para adoptar IA en 7 dimensiones clave.",
     },
-    stats: { en: "35 questions · ~8 min", es: "35 preguntas · ~8 min" },
+    stats: { en: "35 questions · ~4 min", es: "35 preguntas · ~4 min" },
     icon: "🏢",
   },
 ];

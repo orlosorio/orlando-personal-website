@@ -238,7 +238,7 @@ export default function RoleQuiz({
               {ROLE_NAMES[roleId].en} / {ROLE_NAMES[roleId].es}
             </p>
             <p className="mb-[clamp(8px,1.5vh,20px)] font-sans text-sm font-semibold text-[#365cff]/80">
-              33 questions &middot; ~7 min &middot; Confidence scale
+              33 questions &middot; ~4 min &middot; Confidence scale
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-5">
               <button

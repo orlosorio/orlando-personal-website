@@ -157,7 +157,7 @@ export const UI = {
     heading: "AI Adoption Self-Assessment",
     subtitle:
       "Find out exactly where you stand - and what the top 3% of professionals are already doing that you probably aren't.",
-    meta: "15 questions · ~5 minutes. No fluff.",
+    meta: "15 quick-tap questions · ~2 minutes. No overthinking.",
     es: "Español",
     en: "English",
   },

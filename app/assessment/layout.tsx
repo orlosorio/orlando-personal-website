@@ -23,6 +23,9 @@ export default function AssessmentLayout({
     <div className="assessment-shell quiz-grid-bg flex min-h-dvh flex-col px-4 py-[clamp(0.5rem,1.5vh,2rem)] sm:px-6">
       <BackgroundScene />
       <AssessmentNav />
+      <a href="/about" className="about-survey-btn">
+        About &middot; Sobre
+      </a>
       <div className="relative z-10 mx-auto flex w-full max-w-[860px] flex-1 flex-col">
         {children}
       </div>

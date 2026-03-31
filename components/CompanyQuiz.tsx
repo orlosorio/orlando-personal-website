@@ -251,7 +251,7 @@ export default function CompanyQuiz({
               AI Company Readiness &middot; 7 Dimensions
             </p>
             <p className="mb-5 font-sans text-sm font-semibold text-[#365cff]/80">
-              35 questions &middot; ~8 min &middot; Confidence scale
+              35 questions &middot; ~4 min &middot; Confidence scale
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
               <button
