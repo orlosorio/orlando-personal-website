@@ -31,7 +31,7 @@ export default function ArticleHeader({
             onClick={() => onLangChange("en")}
             className={`about-lang-btn ${lang === "en" ? "about-lang-btn-active" : ""}`}
           >
-            EN
+            English
           </button>
           <button
             type="button"
@@ -39,7 +39,7 @@ export default function ArticleHeader({
             onClick={() => onLangChange("es")}
             className={`about-lang-btn ${lang === "es" ? "about-lang-btn-active" : ""}`}
           >
-            ES
+            Español
           </button>
         </div>
       </nav>
