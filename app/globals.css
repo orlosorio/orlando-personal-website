@@ -1745,6 +1745,7 @@ body {
 .about-grid-bg {
   position: relative;
   isolation: isolate;
+  overflow-x: clip;
   background-color: var(--bg-soft);
   background-image:
     linear-gradient(rgba(54, 92, 255, 0.06) 1px, transparent 1px),

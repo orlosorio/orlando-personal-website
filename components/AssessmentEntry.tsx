@@ -73,7 +73,7 @@ export default function AssessmentEntry({
             <p className="mb-[clamp(14px,2.5vh,28px)] font-sans text-[13px] font-semibold text-[#365cff]/80">
               {UI.language.meta}
             </p>
-            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-5">
+            <div className="flex flex-row justify-center gap-4 sm:gap-5">
               <button
                 type="button"
                 onClick={() => pickLanguage("en")}

@@ -267,7 +267,7 @@ export default function QuizApp() {
               <p className="mb-8 font-sans text-sm font-semibold text-[#365cff]/80">
                 {UI.language.meta}
               </p>
-              <div className="flex flex-col gap-5 sm:flex-row sm:justify-center sm:gap-6">
+              <div className="flex flex-row justify-center gap-4 sm:gap-6">
                 <button
                   type="button"
                   onClick={() => startQuiz("en")}
