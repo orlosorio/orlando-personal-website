@@ -1690,6 +1690,68 @@ body {
   text-decoration: underline;
 }
 
+/* Bottom CTA */
+
+.about-bottom-cta {
+  margin-top: 56px;
+  margin-bottom: 48px;
+  padding: 40px 0;
+  border-top: 1px solid rgba(31, 54, 169, 0.08);
+  text-align: center;
+}
+
+.about-bottom-cta-heading {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brand-700);
+  margin: 0 0 8px;
+}
+
+.about-bottom-cta-text {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--brand-700);
+  opacity: 0.55;
+  margin: 0 0 24px;
+}
+
+.about-bottom-cta-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brand-700);
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 8px rgba(31, 54, 169, 0.08);
+}
+
+.about-bottom-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 16px rgba(31, 54, 169, 0.15);
+}
+
+/* About page grid background (no overflow/perspective that breaks sticky) */
+
+.about-grid-bg {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--bg-soft);
+  background-image:
+    linear-gradient(rgba(54, 92, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(54, 92, 255, 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
 /* Page layout — single column on mobile, article + sidebar on desktop */
 
 .about-page-layout {

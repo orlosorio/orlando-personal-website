@@ -18,7 +18,7 @@ export default function AboutLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="assessment-shell quiz-grid-bg flex min-h-dvh flex-col overflow-visible px-4 py-[clamp(0.5rem,1.5vh,2rem)] sm:px-6">
+    <div className="assessment-shell about-grid-bg flex min-h-dvh flex-col px-4 py-[clamp(0.5rem,1.5vh,2rem)] sm:px-6">
       <BackgroundScene />
       <div className="relative z-10 mx-auto flex w-full max-w-[700px] flex-1 flex-col lg:max-w-[1020px]">
         {children}

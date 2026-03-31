@@ -24,6 +24,19 @@ const SIDEBAR_COPY = {
   },
 } as const;
 
+const CTA_COPY = {
+  en: {
+    heading: "Ready to find out where you stand?",
+    text: "15 questions. 2 minutes. No fluff.",
+    button: "Take the free assessment",
+  },
+  es: {
+    heading: "\u00bfListo para saber d\u00f3nde est\u00e1s?",
+    text: "15 preguntas. 2 minutos. Sin relleno.",
+    button: "Tomar el assessment gratuito",
+  },
+} as const;
+
 function getInitialLang(): Lang {
   if (typeof window !== "undefined") {
     const saved = localStorage.getItem("accionables_about_lang");
@@ -52,6 +65,7 @@ export default function AboutPage() {
 
   const content = ABOUT_CONTENT[lang];
   const sidebar = SIDEBAR_COPY[lang];
+  const cta = CTA_COPY[lang];
   const citationAfterIndex = 1;
 
   return (
@@ -76,6 +90,14 @@ export default function AboutPage() {
           ))}
 
           <AuthorSignoff lang={lang} />
+
+          <div className="about-bottom-cta">
+            <h2 className="about-bottom-cta-heading">{cta.heading}</h2>
+            <p className="about-bottom-cta-text">{cta.text}</p>
+            <a href="/assessment" className="about-bottom-cta-btn">
+              {cta.button}
+            </a>
+          </div>
         </div>
 
         <aside className="about-sidebar-col">
