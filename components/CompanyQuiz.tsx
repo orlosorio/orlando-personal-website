@@ -10,6 +10,7 @@ import {
 import { getRoleResultLevel } from "@/lib/scoring";
 import { BEEHIIV_ENDPOINT } from "@/lib/config";
 import {
+  type CompanyQuestion,
   COMPANY_QUESTIONS,
   DIMENSION_NAMES,
   DIMENSION_ORDER,
@@ -35,9 +36,9 @@ function splitLevelLabel(label: string): { number: string; name: string } {
   return { number: label, name: "" };
 }
 
-function computeDimensionScores(answers: number[]) {
+function computeDimensionScores(answers: number[], questionsArr: CompanyQuestion[]) {
   return DIMENSION_ORDER.map((dimId) => {
-    const indices = COMPANY_QUESTIONS
+    const indices = questionsArr
       .map((q, i) => (q.dimension === dimId ? i : -1))
       .filter((i) => i >= 0);
     const dimScore = indices.reduce((s, i) => s + (answers[i] ?? 0), 0);
@@ -48,9 +49,14 @@ function computeDimensionScores(answers: number[]) {
 
 export default function CompanyQuiz({
   initialLanguage,
+  dbQuestions,
+  questionIds,
 }: {
   initialLanguage: Language | null;
+  dbQuestions?: CompanyQuestion[];
+  questionIds?: number[];
 }) {
+  const companyQuestions = dbQuestions ?? COMPANY_QUESTIONS;
   const router = useRouter();
   const [language, setLanguage] = useState<Language | null>(initialLanguage);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -60,7 +66,7 @@ export default function CompanyQuiz({
   );
   const [hydrated, setHydrated] = useState(false);
 
-  const totalQuestions = COMPANY_QUESTIONS.length;
+  const totalQuestions = companyQuestions.length;
 
   useEffect(() => {
     const persisted = loadPersistedState();
@@ -139,7 +145,7 @@ export default function CompanyQuiz({
       ? ((currentQuestion + 1) / totalQuestions) * 100
       : 0;
 
-  const dimensionScores = computeDimensionScores(answers);
+  const dimensionScores = computeDimensionScores(answers, companyQuestions);
 
   const restart = () => {
     clearPersistedState();
@@ -319,7 +325,7 @@ export default function CompanyQuiz({
               <div className="mb-1.5 sm:mb-2 flex flex-wrap items-center justify-between gap-2 text-[12px] sm:text-[14px] text-[#365cff]">
                 <span>
                   {UI.quiz[language].levelOf(
-                    COMPANY_QUESTIONS[currentQuestion]!.level + 1,
+                    companyQuestions[currentQuestion]!.level + 1,
                   )}
                 </span>
                 <span>
@@ -346,7 +352,7 @@ export default function CompanyQuiz({
             <div className="mx-auto w-full max-w-[600px]">
               <div className="glass-quiz-card px-5 py-6 sm:px-8 sm:py-8">
                 {(() => {
-                  const q = COMPANY_QUESTIONS[currentQuestion]!;
+                  const q = companyQuestions[currentQuestion]!;
                   const { number, name } = splitLevelLabel(q.levelLabel[language]);
                   const text = q.statement[language];
                   const dimName = DIMENSION_NAMES[q.dimension][language];
@@ -399,7 +405,10 @@ export default function CompanyQuiz({
           resultsContent={resultsContent}
           onRestart={restart}
           onEmailSubmit={handleEmailSubmit}
-          answers={answers.map((value, i) => ({ sortOrder: i, value }))}
+          answers={answers.map((value, i) => ({
+            ...(questionIds?.[i] != null ? { questionId: questionIds[i] } : { sortOrder: i }),
+            value,
+          }))}
           dimensionScores={dimensionScores.map((d) => ({ dim: d.dimId, score: d.score, max: d.max }))}
         />
       )}

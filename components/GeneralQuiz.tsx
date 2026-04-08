@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   type Language,
+  type Question,
   LEVEL_LABELS,
   QUESTIONS,
   RESULT_COPY,
@@ -31,9 +32,14 @@ function splitLevelLabel(label: string): { number: string; name: string } {
 
 export default function GeneralQuiz({
   initialLanguage,
+  dbQuestions,
+  questionIds,
 }: {
   initialLanguage: Language;
+  dbQuestions?: Question[];
+  questionIds?: number[];
 }) {
+  const questions = dbQuestions ?? QUESTIONS;
   const router = useRouter();
   const [language] = useState<Language>(initialLanguage);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -47,7 +53,7 @@ export default function GeneralQuiz({
       persisted &&
       persisted.assessmentType === "general" &&
       persisted.answers.length > 0 &&
-      persisted.answers.length < QUESTIONS.length
+      persisted.answers.length < questions.length
     ) {
       setCurrentQuestion(persisted.currentQuestion);
       setAnswers(persisted.answers);
@@ -55,7 +61,7 @@ export default function GeneralQuiz({
     setHydrated(true);
   }, []);
 
-  const totalQuestions = QUESTIONS.length;
+  const totalQuestions = questions.length;
 
   const persist = useCallback(
     (q: number, a: number[]) => {
@@ -110,7 +116,7 @@ export default function GeneralQuiz({
       ? ((currentQuestion + 1) / totalQuestions) * 100
       : 0;
 
-  const currentQ = QUESTIONS[currentQuestion];
+  const currentQ = questions[currentQuestion];
 
   const restart = () => {
     clearPersistedState();
@@ -203,7 +209,7 @@ export default function GeneralQuiz({
               <div className="mb-1.5 sm:mb-2 flex flex-wrap items-center justify-between gap-2 text-[12px] sm:text-[14px] text-[#365cff]">
                 <span>
                   {UI.quiz[language].levelOf(
-                    (QUESTIONS[currentQuestion] as { level: number }).level + 1,
+                    (questions[currentQuestion] as { level: number }).level + 1,
                   )}
                 </span>
                 <span>
@@ -230,7 +236,7 @@ export default function GeneralQuiz({
             <div className="mx-auto w-full max-w-[600px]">
               <div className="glass-quiz-card px-5 py-6 sm:px-8 sm:py-8">
                 {(() => {
-                  const q = QUESTIONS[currentQuestion]!;
+                  const q = questions[currentQuestion]!;
                   const full = LEVEL_LABELS[q.level]![language];
                   const { number, name } = splitLevelLabel(full);
                   const text = language === "es" ? q.es : q.en;
@@ -280,7 +286,10 @@ export default function GeneralQuiz({
           resultsContent={resultsContent}
           onRestart={restart}
           onEmailSubmit={handleEmailSubmit}
-          answers={answers.map((value, i) => ({ sortOrder: i, value }))}
+          answers={answers.map((value, i) => ({
+            ...(questionIds?.[i] != null ? { questionId: questionIds[i] } : { sortOrder: i }),
+            value,
+          }))}
         />
       )}
     </div>

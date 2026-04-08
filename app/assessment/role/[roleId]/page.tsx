@@ -4,6 +4,8 @@ import type { Language } from "@/lib/content";
 import type { RoleId } from "@/lib/roles";
 import { isValidRoleId, ROLE_META, VALID_ROLE_IDS } from "@/lib/routing";
 import RoleQuiz from "@/components/RoleQuiz";
+import { fetchQuestions } from "@/lib/supabase/questions";
+import { toRoleQuestions, toQuestionIdMap } from "@/lib/supabase/transformQuestions";
 
 export function generateStaticParams() {
   return VALID_ROLE_IDS.map((id) => ({ roleId: id }));
@@ -47,7 +49,16 @@ export default async function RolePage({
   const initialLanguage: Language | null =
     lang === "en" ? "en" : lang === "es" ? "es" : null;
 
+  const dbQuestions = await fetchQuestions("role", roleId);
+  const questions = dbQuestions ? toRoleQuestions(dbQuestions) : undefined;
+  const questionIds = dbQuestions ? toQuestionIdMap(dbQuestions) : undefined;
+
   return (
-    <RoleQuiz roleId={roleId as RoleId} initialLanguage={initialLanguage} />
+    <RoleQuiz
+      roleId={roleId as RoleId}
+      initialLanguage={initialLanguage}
+      dbQuestions={questions}
+      questionIds={questionIds}
+    />
   );
 }

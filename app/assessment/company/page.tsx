@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { Language } from "@/lib/content";
 import CompanyQuiz from "@/components/CompanyQuiz";
+import { fetchQuestions } from "@/lib/supabase/questions";
+import { toCompanyQuestions, toQuestionIdMap } from "@/lib/supabase/transformQuestions";
 
 export const metadata: Metadata = {
   title: "Company AI Readiness Assessment | Accionables",
@@ -17,5 +19,16 @@ export default async function CompanyPage({
   const { lang } = await searchParams;
   const initialLanguage: Language | null =
     lang === "en" ? "en" : lang === "es" ? "es" : null;
-  return <CompanyQuiz initialLanguage={initialLanguage} />;
+
+  const dbQuestions = await fetchQuestions("company");
+  const questions = dbQuestions ? toCompanyQuestions(dbQuestions) : undefined;
+  const questionIds = dbQuestions ? toQuestionIdMap(dbQuestions) : undefined;
+
+  return (
+    <CompanyQuiz
+      initialLanguage={initialLanguage}
+      dbQuestions={questions}
+      questionIds={questionIds}
+    />
+  );
 }

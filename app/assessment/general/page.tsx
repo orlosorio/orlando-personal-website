@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { Language } from "@/lib/content";
 import GeneralQuiz from "@/components/GeneralQuiz";
+import { fetchQuestions } from "@/lib/supabase/questions";
+import { toGeneralQuestions, toQuestionIdMap } from "@/lib/supabase/transformQuestions";
 
 export const metadata: Metadata = {
   title: "General AI Assessment | Accionables",
@@ -16,5 +18,17 @@ export default async function GeneralPage({
 }) {
   const { lang } = await searchParams;
   const language: Language = lang === "en" ? "en" : "es";
-  return <GeneralQuiz initialLanguage={language} />;
+
+  // Fetch questions from DB server-side (falls back to TS in component)
+  const dbQuestions = await fetchQuestions("general");
+  const questions = dbQuestions ? toGeneralQuestions(dbQuestions) : undefined;
+  const questionIds = dbQuestions ? toQuestionIdMap(dbQuestions) : undefined;
+
+  return (
+    <GeneralQuiz
+      initialLanguage={language}
+      dbQuestions={questions}
+      questionIds={questionIds}
+    />
+  );
 }

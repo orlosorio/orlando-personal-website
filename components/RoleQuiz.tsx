@@ -9,7 +9,7 @@ import {
 } from "@/lib/content";
 import { getRoleResultLevel } from "@/lib/scoring";
 import { BEEHIIV_ENDPOINT } from "@/lib/config";
-import { ROLE_ASSESSMENTS, ROLE_NAMES, type RoleId } from "@/lib/roles";
+import { ROLE_ASSESSMENTS, ROLE_NAMES, type RoleId, type RoleQuestion } from "@/lib/roles";
 import { ROLE_RESULT_COPY } from "@/lib/roleResults";
 import {
   clearPersistedState,
@@ -34,9 +34,13 @@ function splitLevelLabel(label: string): { number: string; name: string } {
 export default function RoleQuiz({
   roleId,
   initialLanguage,
+  dbQuestions,
+  questionIds,
 }: {
   roleId: RoleId;
   initialLanguage: Language | null;
+  dbQuestions?: RoleQuestion[];
+  questionIds?: number[];
 }) {
   const router = useRouter();
   const [language, setLanguage] = useState<Language | null>(initialLanguage);
@@ -48,7 +52,7 @@ export default function RoleQuiz({
   const [hydrated, setHydrated] = useState(false);
 
   const roleAssessment = ROLE_ASSESSMENTS[roleId];
-  const roleQuestions = roleAssessment.questions;
+  const roleQuestions = dbQuestions ?? roleAssessment.questions;
   const totalQuestions = roleQuestions.length;
 
   useEffect(() => {
@@ -351,7 +355,10 @@ export default function RoleQuiz({
           resultsContent={resultsContent}
           onRestart={restart}
           onEmailSubmit={handleEmailSubmit}
-          answers={answers.map((value, i) => ({ sortOrder: i, value }))}
+          answers={answers.map((value, i) => ({
+            ...(questionIds?.[i] != null ? { questionId: questionIds[i] } : { sortOrder: i }),
+            value,
+          }))}
         />
       )}
     </div>
