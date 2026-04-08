@@ -5,7 +5,7 @@
 -- 1. Assessment Types
 -- ------------------------------------------------------------
 create table assessment_types (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key,
   name_en text not null,
   name_es text not null,
   description_en text,
