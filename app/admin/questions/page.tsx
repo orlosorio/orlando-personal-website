@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import AdminNav from "@/components/admin/AdminNav";
 import Link from "next/link";
+import { adminFetch } from "@/lib/admin/fetch";
 
 interface Question {
   id: number;
@@ -29,7 +30,7 @@ export default function AdminQuestions() {
     if (roleFilter) params.set("roleId", roleFilter);
 
     try {
-      const res = await fetch(`/api/admin/questions?${params}`);
+      const res = await adminFetch(`/api/admin/questions?${params}`);
       setQuestions(await res.json());
     } catch {
       // ignore
@@ -41,7 +42,7 @@ export default function AdminQuestions() {
   useEffect(() => { void fetchQuestions(); }, [fetchQuestions]);
 
   const toggleActive = async (id: number, currentActive: boolean) => {
-    await fetch(`/api/admin/questions/${id}`, {
+    await adminFetch(`/api/admin/questions/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ is_active: !currentActive }),

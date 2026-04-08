@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import AdminNav from "@/components/admin/AdminNav";
 import Link from "next/link";
+import { adminFetch } from "@/lib/admin/fetch";
 
 const DEFAULT_OPTIONS = [
   { value: 0, label_en: "Never done this", label_es: "Nunca he hecho esto" },
@@ -36,7 +37,7 @@ export default function NewQuestion() {
     }
     setSaving(true);
     try {
-      const res = await fetch("/api/admin/questions", {
+      const res = await adminFetch("/api/admin/questions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

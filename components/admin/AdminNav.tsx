@@ -7,10 +7,16 @@ const links = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/submissions", label: "Submissions" },
   { href: "/admin/questions", label: "Questions" },
+  { href: "/admin/sessions", label: "Sessions" },
 ];
 
 export default function AdminNav() {
   const pathname = usePathname();
+
+  async function handleLogout() {
+    await fetch("/api/admin/logout", { method: "POST" });
+    window.location.href = "/admin/login";
+  }
 
   return (
     <nav className="border-b border-gray-200 bg-white px-6 py-3">
@@ -37,6 +43,12 @@ export default function AdminNav() {
             );
           })}
         </div>
+        <button
+          onClick={handleLogout}
+          className="ml-auto text-sm text-gray-500 hover:text-red-600 transition"
+        >
+          Logout
+        </button>
       </div>
     </nav>
   );

@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import AdminNav from "@/components/admin/AdminNav";
 import Link from "next/link";
+import { adminFetch } from "@/lib/admin/fetch";
 
 interface Submission {
   id: number;
@@ -39,7 +40,7 @@ export default function AdminSubmissions() {
     if (typeFilter) params.set("type", typeFilter);
 
     try {
-      const res = await fetch(`/api/admin/submissions?${params}`);
+      const res = await adminFetch(`/api/admin/submissions?${params}`);
       setData(await res.json());
     } catch {
       // ignore

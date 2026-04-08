@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import AdminNav from "@/components/admin/AdminNav";
 import Link from "next/link";
+import { adminFetch } from "@/lib/admin/fetch";
 
 interface Stats {
   totalSubmissions: number;
@@ -27,7 +28,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/admin/stats")
+    adminFetch("/api/admin/stats")
       .then((r) => r.json())
       .then(setStats)
       .catch(() => {})

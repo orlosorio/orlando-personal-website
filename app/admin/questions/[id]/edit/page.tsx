@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import AdminNav from "@/components/admin/AdminNav";
 import Link from "next/link";
+import { adminFetch } from "@/lib/admin/fetch";
 
 interface QuestionData {
   id: number;
@@ -30,7 +31,7 @@ export default function EditQuestion() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/admin/questions/${params.id}`)
+    adminFetch(`/api/admin/questions/${params.id}`)
       .then((r) => r.json())
       .then(setQ)
       .catch(() => {})
@@ -41,7 +42,7 @@ export default function EditQuestion() {
     if (!q) return;
     setSaving(true);
     try {
-      await fetch(`/api/admin/questions/${q.id}`, {
+      await adminFetch(`/api/admin/questions/${q.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(q),
