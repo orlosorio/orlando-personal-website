@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation';
 import { type Language, LEVEL_LABELS, UI } from '@/lib/content';
 import { getRoleResultLevel } from '@/lib/scoring';
 import { BEEHIIV_ENDPOINT } from '@/lib/config';
-import { COMPANY_QUESTIONS, DIMENSION_NAMES, DIMENSION_ORDER } from '@/lib/companyAssessment';
-import { COMPANY_RESULT_COPY } from '@/lib/companyResults';
+import { ROLE_ASSESSMENTS, ROLE_NAMES, type RoleId } from '@/lib/roles';
+import { ROLE_RESULT_COPY } from '@/lib/roleResults';
 import { clearPersistedState, loadPersistedState, savePersistedState } from '@/lib/sessionState';
-import ScaleButtons from '@/components/ScaleButtons';
-import HeroAI from '@/components/HeroAI';
-import ToolsMarquee from '@/components/ToolsMarquee';
-import PostQuizFlow from '@/components/PostQuiz/PostQuizFlow';
+import ScaleButtons from '@/app/assessment/_components/scale-buttons';
+import HeroAI from '@/app/assessment/_components/hero-ai';
+import ToolsMarquee from '@/app/assessment/_components/tools-marquee';
+import PostQuizFlow from '@/app/assessment/_components/post-quiz/post-quiz-flow';
 
 type Screen = 'language' | 'quiz' | 'post-quiz';
 
@@ -23,18 +23,13 @@ function splitLevelLabel(label: string): { number: string; name: string } {
   return { number: label, name: '' };
 }
 
-function computeDimensionScores(answers: number[]) {
-  return DIMENSION_ORDER.map((dimId) => {
-    const indices = COMPANY_QUESTIONS.map((q, i) => (q.dimension === dimId ? i : -1)).filter(
-      (i) => i >= 0,
-    );
-    const dimScore = indices.reduce((s, i) => s + (answers[i] ?? 0), 0);
-    const dimMax = indices.length * 4;
-    return { dimId, score: dimScore, max: dimMax };
-  });
-}
-
-export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Language | null }) {
+export default function RoleQuiz({
+  roleId,
+  initialLanguage,
+}: {
+  roleId: RoleId;
+  initialLanguage: Language | null;
+}) {
   const router = useRouter();
   const [language, setLanguage] = useState<Language | null>(initialLanguage);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -42,13 +37,16 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
   const [screen, setScreen] = useState<Screen>(initialLanguage ? 'quiz' : 'language');
   const [hydrated, setHydrated] = useState(false);
 
-  const totalQuestions = COMPANY_QUESTIONS.length;
+  const roleAssessment = ROLE_ASSESSMENTS[roleId];
+  const roleQuestions = roleAssessment.questions;
+  const totalQuestions = roleQuestions.length;
 
   useEffect(() => {
     const persisted = loadPersistedState();
     if (
       persisted &&
-      persisted.assessmentType === 'company' &&
+      persisted.assessmentType === 'role' &&
+      persisted.roleId === roleId &&
       persisted.answers.length > 0 &&
       persisted.answers.length < totalQuestions
     ) {
@@ -58,27 +56,32 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
       setScreen('quiz');
     }
     setHydrated(true);
-  }, [totalQuestions]);
+  }, [roleId, totalQuestions]);
+
+  const changeScreen = useCallback((next: Screen) => {
+    setScreen(next);
+    window.history.replaceState(null, '', window.location.href);
+  }, []);
 
   const persist = useCallback(
     (q: number, a: number[]) => {
       if (!language) return;
       savePersistedState({
-        assessmentType: 'company',
-        roleId: null,
+        assessmentType: 'role',
+        roleId,
         language,
         currentQuestion: q,
         answers: a,
       });
     },
-    [language],
+    [language, roleId],
   );
 
   const startQuiz = (lang: Language) => {
     setLanguage(lang);
     setCurrentQuestion(0);
     setAnswers([]);
-    setScreen('quiz');
+    changeScreen('quiz');
   };
 
   const answerQuestion = useCallback(
@@ -116,8 +119,6 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
 
   const quizProgressPct = totalQuestions > 0 ? ((currentQuestion + 1) / totalQuestions) * 100 : 0;
 
-  const dimensionScores = computeDimensionScores(answers);
-
   const restart = () => {
     clearPersistedState();
     router.push('/assessment');
@@ -130,11 +131,8 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...payload,
-          dimensionScores: dimensionScores.map((d) => ({
-            dimension: d.dimId,
-            score: d.score,
-            max: d.max,
-          })),
+          roleId,
+          roleName: language ? ROLE_NAMES[roleId][language] : '',
         }),
       });
     }
@@ -152,9 +150,9 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
           {resultLevelName}
         </p>
         <p className="mt-2 font-sans text-xs tracking-[0.08em] text-[#8a9ff0]">
-          {language === 'es'
-            ? 'Evaluación Empresarial · 7 Dimensiones'
-            : 'Company Assessment · 7 Dimensions'}
+          {ROLE_NAMES[roleId][language]}
+          {' · '}
+          {language === 'es' ? 'Escala de confianza' : 'Confidence Scale'}
         </p>
       </div>
 
@@ -187,51 +185,16 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
         <div className="h-[4px] w-full rounded-full bg-[#d7ddfb]">
           <div
             className="h-[4px] rounded-full bg-[#365cff] transition-[width] duration-[350ms] ease-out"
-            style={{ width: `${(score / maxScore) * 100}%` }}
+            style={{ width: `${(score / (totalQuestions * 4)) * 100}%` }}
           />
         </div>
         <p className="mt-1 text-right text-xs text-[#999]">
-          {Math.round((score / maxScore) * 100)}%
+          {Math.round((score / (totalQuestions * 4)) * 100)}%
         </p>
-      </div>
-
-      <div className="mt-6 rounded-[10px] border border-[#d8defa] px-5 py-5">
-        <p className="mb-4 font-sans text-sm font-bold text-[#1f36a9]">
-          {language === 'es' ? 'Puntuación por dimensión' : 'Score by dimension'}
-        </p>
-        <div className="space-y-3">
-          {dimensionScores.map(({ dimId, score: ds, max: dm }) => (
-            <div key={dimId}>
-              <div className="mb-1 flex items-center justify-between text-[13px]">
-                <span className="text-[#444]">{DIMENSION_NAMES[dimId][language]}</span>
-                <span className="font-semibold text-[#111]">
-                  {ds}/{dm}
-                  <span className="ml-1 text-[#999]">
-                    ({dm > 0 ? Math.round((ds / dm) * 100) : 0}%)
-                  </span>
-                </span>
-              </div>
-              <div className="h-[4px] w-full rounded-full bg-[#e8ebf8]">
-                <div
-                  className="h-[4px] rounded-full transition-[width] duration-[350ms] ease-out"
-                  style={{
-                    width: dm > 0 ? `${(ds / dm) * 100}%` : '0%',
-                    backgroundColor:
-                      dm > 0 && ds / dm >= 0.7
-                        ? '#22c55e'
-                        : dm > 0 && ds / dm >= 0.4
-                          ? '#f59e0b'
-                          : '#ef4444',
-                  }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       <p className="mt-8 font-sans text-[15px] leading-relaxed text-[#333]">
-        {COMPANY_RESULT_COPY[resultLevel]!.description[language]}
+        {ROLE_RESULT_COPY[resultLevel]!.description[language]}
       </p>
 
       <div className="mt-8">
@@ -239,7 +202,7 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
           {UI.results[language].nextStepHeading}
         </p>
         <p className="mt-2 font-sans text-[15px] leading-relaxed text-[#333]">
-          {COMPANY_RESULT_COPY[resultLevel]!.nextStep[language]}
+          {ROLE_RESULT_COPY[resultLevel]!.nextStep[language]}
         </p>
       </div>
     </div>
@@ -250,19 +213,19 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
       {screen === 'language' && (
         <div className="flex flex-1 flex-col items-center justify-center">
           <div className="w-full max-w-[600px] text-center">
-            <h1 className="hero-title mb-5">
+            <h1 className="hero-title mb-[clamp(8px,1.5vh,20px)]">
               <HeroAI />
               <span className="hero-title-adoption">Adoption</span>
               <hr className="hero-title-rule" />
-              <span className="hero-title-assessment">Company Assessment</span>
+              <span className="hero-title-assessment">Self-Assessment</span>
             </h1>
-            <p className="mb-3 font-sans text-[15px] leading-relaxed text-[#4d5b9a] sm:text-base">
-              AI Company Readiness &middot; 7 Dimensions
+            <p className="mb-[clamp(4px,1vh,16px)] font-sans text-[15px] leading-relaxed text-[#4d5b9a] sm:text-base">
+              {ROLE_NAMES[roleId].en} / {ROLE_NAMES[roleId].es}
             </p>
-            <p className="mb-5 font-sans text-sm font-semibold text-[#365cff]/80">
-              35 questions &middot; ~4 min &middot; Confidence scale
+            <p className="mb-[clamp(8px,1.5vh,20px)] font-sans text-sm font-semibold text-[#365cff]/80">
+              33 questions &middot; ~4 min &middot; Confidence scale
             </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
+            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-5">
               <button type="button" onClick={() => startQuiz('en')} className="glass-cta">
                 <span className="glass-cta-label">{UI.language.en}</span>
               </button>
@@ -270,7 +233,7 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
                 <span className="glass-cta-label">{UI.language.es}</span>
               </button>
             </div>
-            <div className="relative left-1/2 mt-6 -ml-[50vw] w-screen">
+            <div className="relative left-1/2 mt-[clamp(8px,2vh,24px)] -ml-[50vw] w-screen">
               <ToolsMarquee language="en" />
             </div>
           </div>
@@ -282,9 +245,7 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
           <div className="w-full max-w-[600px]">
             <header className="mb-3 w-full shrink-0 sm:mb-5">
               <div className="mb-1.5 flex flex-wrap items-center justify-between gap-2 text-[12px] text-[#365cff] sm:mb-2 sm:text-[14px]">
-                <span>
-                  {UI.quiz[language].levelOf(COMPANY_QUESTIONS[currentQuestion]!.level + 1)}
-                </span>
+                <span>{UI.quiz[language].levelOf(roleQuestions[currentQuestion]!.level + 1)}</span>
                 <span>{UI.quiz[language].questionOf(currentQuestion + 1, totalQuestions)}</span>
               </div>
               <div
@@ -304,15 +265,11 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
             <div className="mx-auto w-full max-w-[600px]">
               <div className="glass-quiz-card px-5 py-6 sm:px-8 sm:py-8">
                 {(() => {
-                  const q = COMPANY_QUESTIONS[currentQuestion]!;
+                  const q = roleQuestions[currentQuestion]!;
                   const { number, name } = splitLevelLabel(q.levelLabel[language]);
                   const text = q.statement[language];
-                  const dimName = DIMENSION_NAMES[q.dimension][language];
                   return (
                     <>
-                      <span className="mb-2 inline-block rounded-full bg-[#eef1ff] px-3 py-0.5 text-[11px] font-semibold tracking-wide text-[#365cff] sm:mb-3 sm:py-1 sm:text-[12px]">
-                        {dimName}
-                      </span>
                       <div className="flex items-baseline gap-2 sm:flex-col sm:gap-0">
                         <p className="font-serif text-[20px] leading-tight font-bold text-[#1f36a9] sm:text-[28px]">
                           {number}
@@ -346,7 +303,8 @@ export default function CompanyQuiz({ initialLanguage }: { initialLanguage: Lang
       {screen === 'post-quiz' && language && (
         <PostQuizFlow
           language={language}
-          assessmentType="company"
+          assessmentType="role"
+          roleId={roleId}
           score={score}
           maxScore={maxScore}
           totalQuestions={totalQuestions}

@@ -3,11 +3,12 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ABOUT_CONTENT } from '@/lib/about-content';
-import ArticleHeader from '@/components/About/ArticleHeader';
-import ArticleSection from '@/components/About/ArticleSection';
-import CitationCard from '@/components/About/CitationCard';
-import AuthorSignoff from '@/components/About/AuthorSignoff';
-import StickyAssessmentBar from '@/components/About/StickyAssessmentBar';
+import ArticleHeader from './_components/article-header';
+import ArticleSection from './_components/article-section';
+import CitationCard from './_components/citation-card';
+import AuthorSignoff from './_components/author-signoff';
+import StickyAssessmentBar from './_components/sticky-assessment-bar';
+import ReadingProgress from './_components/reading-progress';
 
 type Lang = 'en' | 'es';
 
@@ -110,23 +111,5 @@ export default function AboutPage() {
       </div>
       <StickyAssessmentBar lang={lang} />
     </>
-  );
-}
-
-function ReadingProgress() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-      const pct = (scrollTop / (scrollHeight - clientHeight)) * 100;
-      setProgress(Math.min(100, Math.round(pct)));
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  return (
-    <div className="about-progress-bar" style={{ width: `${progress}%` }} aria-hidden="true" />
   );
 }

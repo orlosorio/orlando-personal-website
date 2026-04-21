@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import BackgroundScene from '@/components/BackgroundScene';
+import BackgroundScene from '@/components/layout/background-scene';
 
 export const metadata: Metadata = {
   title: 'About this Survey | Accionables AI Adoption Assessment',

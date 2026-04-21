@@ -8,11 +8,11 @@ import { computeMockBenchmark } from '@/lib/benchmarkMock';
 import { COUNTRIES } from '@/lib/demographics';
 import { COMPANY_TYPES_V2 } from '@/lib/companyTypesV2';
 import { INDUSTRIES } from '@/lib/industries';
-import ValuePropScreen from './ValuePropScreen';
-import PostQuizEmailScreen from './PostQuizEmailScreen';
-import DemographicsScreen, { type DemographicsData } from './DemographicsScreen';
-import BenchmarkPanel from './BenchmarkPanel';
-import BenchmarkTeaser from './BenchmarkTeaser';
+import ValuePropScreen from './value-prop-screen';
+import PostQuizEmailScreen from './post-quiz-email-screen';
+import DemographicsScreen, { type DemographicsData } from './demographics-screen';
+import BenchmarkPanel from './benchmark-panel';
+import BenchmarkTeaser from './benchmark-teaser';
 
 type PostQuizScreen = 'value-prop' | 'email' | 'demographics' | 'results' | 'calculating';
 

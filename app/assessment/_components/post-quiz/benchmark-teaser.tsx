@@ -3,7 +3,7 @@
 import type { Language } from '@/lib/content';
 import { UI } from '@/lib/content';
 import { SEED_BENCHMARK } from '@/lib/benchmarkMock';
-import BenchmarkPanel from './BenchmarkPanel';
+import BenchmarkPanel from './benchmark-panel';
 
 interface BenchmarkTeaserProps {
   language: Language;

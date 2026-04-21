@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import BackgroundScene from '@/components/BackgroundScene';
-import FomoCounter from '@/components/FomoCounter';
-import AssessmentNav from '@/components/AssessmentNav';
+import BackgroundScene from '@/components/layout/background-scene';
+import FomoCounter from './_components/fomo-counter';
+import AssessmentNav from './_components/assessment-nav';
 
 export const metadata: Metadata = {
   title: 'AI Adoption Self-Assessment | Accionables',

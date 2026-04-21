@@ -6,8 +6,8 @@ import { type Language, LEVEL_LABELS, QUESTIONS, RESULT_COPY, UI } from '@/lib/c
 import { getResultLevel } from '@/lib/scoring';
 import { BEEHIIV_ENDPOINT } from '@/lib/config';
 import { clearPersistedState, loadPersistedState, savePersistedState } from '@/lib/sessionState';
-import ScaleButtons from '@/components/ScaleButtons';
-import PostQuizFlow from '@/components/PostQuiz/PostQuizFlow';
+import ScaleButtons from '@/app/assessment/_components/scale-buttons';
+import PostQuizFlow from '@/app/assessment/_components/post-quiz/post-quiz-flow';
 
 type Screen = 'quiz' | 'post-quiz';
 

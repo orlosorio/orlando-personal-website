@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation';
 import type { Language } from '@/lib/content';
 import { UI } from '@/lib/content';
 import type { RoleId } from '@/lib/roles';
-import TypeSelector, { type AssessmentType } from '@/components/TypeSelector';
-import RoleSelector from '@/components/RoleSelector';
-import ToolsMarquee from '@/components/ToolsMarquee';
-import HeroAI from '@/components/HeroAI';
+import TypeSelector, { type AssessmentType } from './type-selector';
+import RoleSelector from './role-selector';
+import ToolsMarquee from './tools-marquee';
+import HeroAI from './hero-ai';
 
 type Screen = 'type-selector' | 'language' | 'role-selector';
 
